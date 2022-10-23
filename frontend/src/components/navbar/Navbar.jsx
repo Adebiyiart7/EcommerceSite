@@ -38,6 +38,7 @@ const useStyles = makeStyles({
   },
   rightIcon: {
     padding: 7,
+    color: "var(--primaryText)",
     border: "1px solid var(--primaryBorder)",
     borderRadius: "50%",
     fontSize: 18,
@@ -110,6 +111,7 @@ const Navbar = ({ mediaQueries }) => {
           <Navigations media1000Down={media1000Down} />
         </div>
       )}
+      {media650Down && <Category />}
     </Container>
   );
 };
