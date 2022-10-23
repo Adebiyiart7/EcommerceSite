@@ -17,11 +17,11 @@ const useStyles = makeStyles({
   },
 });
 
-const Button = ({ startIcon, text, endIcon, customStyles }) => {
+const Button = ({ startIcon, text, endIcon, customStyles, onClick }) => {
   const classes = useStyles();
 
   return (
-    <button className={classes.button} style={customStyles.button}>
+    <button onClick={onClick} className={classes.button} style={customStyles.button}>
       {startIcon && (
         <span className={classes.startIcon} style={customStyles.startIcon}>
           {startIcon}

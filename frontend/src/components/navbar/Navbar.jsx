@@ -1,14 +1,18 @@
 // NODE_MODULES
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
-import { MdSearch } from "react-icons/md";
+import { IoSearch } from "react-icons/io5";
 import { makeStyles } from "@mui/styles";
-import { BiCategory } from "react-icons/bi";
-import { IoChevronDown } from "react-icons/io5";
+import { BiHeart } from "react-icons/bi";
+import { MdMenu } from "react-icons/md";
+import { useTheme, useMediaQuery } from "@material-ui/core";
 
 // LOCAL IMPORTS
 import logo from "../../assets/images/logo.png";
-import Button from "../common/Button";
+import logo_sm from "../../assets/images/logo_sm.png";
 import { Container } from "@mui/material";
+import Category from "../category/Category";
+import Navigations from "./Navigations";
 
 const useStyles = makeStyles({
   center: {
@@ -20,100 +24,92 @@ const useStyles = makeStyles({
   logo: {
     height: 60,
   },
-  nav: {
-    listStyle: "none",
-    fontWeight: 300,
-    fontSize: 14,
-    padding: "6px 12px",
-    marginRight: 10,
-    borderRadius: 4,
-  },
   navbar: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "20px 0"
-  },
-  navLink: {
-    color: "var(--primaryText)",
-    textDecoration: "none",
-  },
-  navs: {
-    paddingLeft: 0,
-    display: "flex",
-    flexDirection: "row",
+    padding: "20px 0",
   },
   right: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
   },
+  rightIcon: {
+    padding: 7,
+    border: "1px solid var(--primaryBorder)",
+    borderRadius: "50%",
+    fontSize: 18,
+    marginRight: 10,
+    "&:hover": {
+      backgroundColor: "var(--primaryColor)",
+      color: "var(--white)",
+    },
+  },
 });
 
-const categoriesIcon = {
-  position: "relative",
-  top: 3,
-  fontSize: 20,
-};
-
-const categoriesButton = {
-  button: {
-    fontWeight: 700,
-    fontSize: 16,
-    padding: "10px 20px",
-    fontFamily: "Roboto",
-    marginRight: 20,
-  },
-  startIcon: {
-    ...categoriesIcon,
-    marginRight: 8,
-  },
-  endIcon: {
-    ...categoriesIcon,
-    marginLeft: 8,
-  },
-};
-
-const Navbar = () => {
+const Navbar = ({ mediaQueries }) => {
+  const [showMobileNavs, setShowMobileNavs] = useState(false);
+  const theme = useTheme();
+  const media1000Down = useMediaQuery(theme.breakpoints.down(1000));
+  const media650Down = useMediaQuery(theme.breakpoints.down(650));
+  const { mediumDown, largeDown } = mediaQueries;
   const classes = useStyles();
+
+  const handleShowMobileNav = () => setShowMobileNavs(!showMobileNavs);
+
+  const mediaStyles = {
+    avatar: {},
+    logo: {
+      height: largeDown && 55,
+    },
+    menuBar: {
+      display: media1000Down ? "block" : "none",
+    },
+    mobileNavs: { display: showMobileNavs ? "block" : "none" },
+    navbar: { padding: largeDown && "7px 0" },
+  };
 
   return (
     <Container>
-      <div className={classes.navbar}>
+      <div className={classes.navbar} style={mediaStyles.navbar}>
         <div className={classes.logoContainer}>
-          <img className={classes.logo} src={logo} alt="logo" />
+          {mediumDown ? (
+            <img className={classes.logo} src={logo_sm} alt="logo" />
+          ) : (
+            <img
+              className={classes.logo}
+              style={mediaStyles.logo}
+              src={logo}
+              alt="logo"
+            />
+          )}
         </div>
         <div className={classes.center}>
-          <Button
-            startIcon={<BiCategory />}
-            endIcon={<IoChevronDown />}
-            customStyles={categoriesButton}
-            text="All Categories"
-          />
-          <div className={classes.secondCenter}>
-            <ul className={classes.navs}>
-              <a href="/" className={classes.navLink}>
-                <li className={classes.nav}>Home</li>
-              </a>
-              <a href="/" className={classes.navLink}>
-                <li className={classes.nav}>About</li>
-              </a>
-              <a href="/" className={classes.navLink}>
-                <li className={classes.nav}>Contact</li>
-              </a>
-              <a href="/" className={classes.navLink}>
-                <li className={classes.nav}>Blog</li>
-              </a>
-            </ul>
-          </div>
+          {!media650Down && <Category />}
+          {!media1000Down && <Navigations media1000Down={media1000Down} />}
         </div>
         <div className={classes.right}>
-          <MdSearch />
-          <MdSearch />
-          <Avatar src="" />
+          <IoSearch className={classes.rightIcon} />
+          <BiHeart className={classes.rightIcon} />
+          <MdMenu
+            className={classes.rightIcon}
+            style={mediaStyles.menuBar}
+            onClick={handleShowMobileNav}
+          />
+          <Avatar
+            style={mediaStyles.avatar}
+            src=""
+            sx={{ width: 34, height: 34 }}
+          />
         </div>
       </div>
+      {media1000Down && (
+        <div style={mediaStyles.mobileNavs}>
+          <Navigations media1000Down={media1000Down} />
+        </div>
+      )}
     </Container>
   );
 };
