@@ -27,7 +27,11 @@ const useStyles = makeStyles({
     fontSize: 15,
     display: "block",
     padding: "10px 15px",
+    backgroundColor: "var(--white)",
     borderBottom: "1px solid var(--primaryBorder)",
+    "&:hover": {
+      backgroundColor: "var(--lightBackground)",
+    },
     "&:last-child": {
       borderBottom: "none",
     },
@@ -87,7 +91,7 @@ const Category = () => {
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", zIndex: "var(--zIndex1)" }}>
       <Button
         startIcon={<BiCategory />}
         endIcon={<IoChevronDown />}

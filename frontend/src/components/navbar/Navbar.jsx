@@ -29,7 +29,7 @@ const useStyles = makeStyles({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "20px 0",
+    padding: "10px 0",
   },
   right: {
     display: "flex",
