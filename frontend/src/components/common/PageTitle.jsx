@@ -1,4 +1,4 @@
-const PageTitle = ({ text, subTitle, mediaQueries }) => {
+const PageTitle = ({ title, subTitle, mediaQueries }) => {
   const { mediumDown, tabletDown } = mediaQueries;
 
   const fontSize = () => {
@@ -22,13 +22,15 @@ const PageTitle = ({ text, subTitle, mediaQueries }) => {
     },
     titleContainer: {
       textAlign: "center",
-      textTransform: "uppercase"
+      textTransform: "uppercase",
+      margin: "20px 0"
     },
   };
+
   return (
     <div style={inlineStyles.titleContainer}>
       <h1 style={inlineStyles.subTitle}>{subTitle}</h1>
-      <h3 style={inlineStyles.title}>{text}</h3>;
+      <h3 style={inlineStyles.title}>{title}</h3>
     </div>
   );
 };

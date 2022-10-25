@@ -23,7 +23,7 @@ const ItemButton = () => {
     },
   };
 
-  return <Button text="Add to Cart" customStyles={customStyles} />
+  return <Button text="Add to Cart" customStyles={customStyles} />;
 };
 
 const PopularProducts = ({ mediaQueries }) => {
@@ -31,11 +31,11 @@ const PopularProducts = ({ mediaQueries }) => {
 
   return (
     <div className={classes.popularProducts}>
-      <PageTitle
-        text="Popular Products"
-        subTitle="Products for the week"
-        mediaQueries={mediaQueries}
-      />
+        <PageTitle
+          title="Popular Products"
+          subTitle="Products for the week"
+          mediaQueries={mediaQueries}
+        />
       <Container>
         <Grid container spacing={{ xs: 2 }}>
           <Grid item xs={12} sm={6} md={3}>

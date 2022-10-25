@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { Rating } from "@mui/material";
+import { BiHeart } from "react-icons/bi";
 
 const useStyles = makeStyles({
   image: {
@@ -9,6 +10,7 @@ const useStyles = makeStyles({
     maxWidth: 250,
   },
   itemContainer: {
+    position: "relative",
     borderRadius: 7,
     textDecoration: "none",
     textAlign: "center",
@@ -16,9 +18,9 @@ const useStyles = makeStyles({
     maxWidth: 320,
     margin: "auto",
     "&:hover": {
-      border: "1px solid var(--primaryColor)"
+      border: "1px solid var(--primaryColor)",
     },
-    border: "1px solid var(--primaryBorder)"
+    border: "1px solid var(--primaryBorder)",
   },
   price: {
     fontWeight: 700,
@@ -27,12 +29,29 @@ const useStyles = makeStyles({
   },
   stars: {},
   title: {},
+  wishListIcon: {
+    position: "absolute",
+    top: 16,
+    right: 16,
+    padding: 8,
+    borderRadius: 4,
+    cursor: "pointer",
+    color: "var(--primaryText)",
+    fontSize: 20,
+    border: "1px solid var(--primaryBorder)",
+    "&:hover": {
+      color: "var(--white)",
+      border: "1px solid var(--primaryColor)",
+      backgroundColor: "var(--primaryColor)",
+    },
+  },
 });
 const Item = ({ action, image, price, stars, title }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.itemContainer}>
+      <BiHeart className={classes.wishListIcon} />
       <Link to="/">
         <img className={classes.image} src={image} alt="" />
       </Link>
