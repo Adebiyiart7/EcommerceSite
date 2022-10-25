@@ -11,7 +11,7 @@ import { useTheme, useMediaQuery } from "@material-ui/core";
 import logo from "../../assets/images/logo.png";
 import logo_sm from "../../assets/images/logo_sm.png";
 import { Container } from "@mui/material";
-import Category from "../category/Category";
+import Category from "../category";
 import Navigations from "./Navigations";
 
 const useStyles = makeStyles({

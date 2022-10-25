@@ -25,7 +25,8 @@ const useStyles = makeStyles({
   popularCatogories: {
     textAlign: "center",
     alignItems: "center",
-    margin: "30px 0 !important",
+    marginTop: -10,
+    paddingTop: 30,
     overflow: "hidden",
   },
   title: {
@@ -45,18 +46,26 @@ const PopularCategories = ({ mediaQueries }) => {
   };
 
   return (
-    <Container>
-      <Grid container className={classes.popularCatogories}>
-        {categories.map((category, index) => (
-          <Grid item xs={4} md={2}>
-            <a key={index} href={category.link} className={classes.category}>
-              <img className={classes.image} src={category.image} alt="" />
-              <h3 className={classes.title} style={mediaStyles.title}>{category.title}</h3>
-            </a>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+    <div
+      style={{
+        backgroundColor: "var(--lightBackground)",
+      }}
+    >
+      <Container>
+        <Grid container className={classes.popularCatogories}>
+          {categories.map((category, index) => (
+            <Grid item xs={4} md={2}>
+              <a key={index} href={category.link} className={classes.category}>
+                <img className={classes.image} src={category.image} alt="" />
+                <h3 className={classes.title} style={mediaStyles.title}>
+                  {category.title}
+                </h3>
+              </a>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </div>
   );
 };
 
