@@ -46,6 +46,7 @@ const Offer = ({ mediaQueries }) => {
               action={<ItemButton mediaQueries={mediaQueries} />}
               image={oranges}
               price={20}
+              discount={35}
               stars={4}
               title="Soure Fresh Lemons"
               mediaQueries={mediaQueries}
@@ -56,6 +57,7 @@ const Offer = ({ mediaQueries }) => {
               action={<ItemButton mediaQueries={mediaQueries} />}
               image={oranges}
               price={20}
+              discount={35}
               stars={4}
               title="Soure Fresh Lemons"
               mediaQueries={mediaQueries}
@@ -66,6 +68,7 @@ const Offer = ({ mediaQueries }) => {
               action={<ItemButton mediaQueries={mediaQueries} />}
               image={oranges}
               price={20}
+              discount={35}
               stars={4}
               title="Soure Fresh Lemons"
               mediaQueries={mediaQueries}
@@ -76,6 +79,7 @@ const Offer = ({ mediaQueries }) => {
               action={<ItemButton mediaQueries={mediaQueries} />}
               image={oranges}
               price={20}
+              discount={35}
               stars={4}
               title="Soure Fresh Lemons"
               mediaQueries={mediaQueries}
@@ -86,6 +90,7 @@ const Offer = ({ mediaQueries }) => {
               action={<ItemButton mediaQueries={mediaQueries} />}
               image={oranges}
               price={20}
+              discount={35}
               stars={4}
               title="Soure Fresh Lemons"
               mediaQueries={mediaQueries}
@@ -96,6 +101,7 @@ const Offer = ({ mediaQueries }) => {
               action={<ItemButton mediaQueries={mediaQueries} />}
               image={oranges}
               price={20}
+              discount={35}
               stars={4}
               title="Soure Fresh Lemons"
               mediaQueries={mediaQueries}

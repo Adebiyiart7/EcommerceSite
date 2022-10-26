@@ -7,6 +7,13 @@ import { BiHeart } from "react-icons/bi";
 const useStyles = makeStyles({
   actions: {
     display: "flex",
+    marginTop: 5,
+  },
+  discount: {
+    fontWeight: 700,
+    fontSize: 16,
+    margin: "5px 0",
+    marginRight: 10,
   },
   image: {
     width: "100%",
@@ -29,7 +36,7 @@ const useStyles = makeStyles({
   },
   price: {
     fontWeight: 700,
-    fontSize: 20,
+    fontSize: 16,
     margin: "5px 0",
   },
   right: {
@@ -39,7 +46,7 @@ const useStyles = makeStyles({
     marginLeft: 10,
   },
   stars: {
-    // marginTop: 10,
+    marginTop: 10,
   },
   title: {
     margin: 0,
@@ -60,7 +67,15 @@ const useStyles = makeStyles({
   },
 });
 
-const Item = ({ action, image, price, stars, title, mediaQueries }) => {
+const Item = ({
+  action,
+  discount,
+  image,
+  price,
+  stars,
+  title,
+  mediaQueries,
+}) => {
   const { laptopUp } = mediaQueries;
   const classes = useStyles();
 
@@ -80,7 +95,6 @@ const Item = ({ action, image, price, stars, title, mediaQueries }) => {
       <div className={classes.right}>
         <div>
           <h3 className={classes.title}>{title}</h3>
-          <div className={classes.price}>${price}</div>
           <Rating
             value={stars}
             size="small"
@@ -91,12 +105,22 @@ const Item = ({ action, image, price, stars, title, mediaQueries }) => {
             className={classes.stars}
           />
         </div>
-        <div className={classes.actions}>
-          <span>{action}</span>
-          <BiHeart
-            style={mediaStyles.wishListIcon}
-            className={classes.wishListIcon}
-          />
+
+        <div>
+          <div>
+            <strike className={classes.discount}>
+              ${parseInt(price * (discount / 100))}
+            </strike>
+            <span className={classes.price}>${price}</span>
+          </div>
+
+          <div className={classes.actions}>
+            <span>{action}</span>
+            <BiHeart
+              style={mediaStyles.wishListIcon}
+              className={classes.wishListIcon}
+            />
+          </div>
         </div>
       </div>
     </div>
