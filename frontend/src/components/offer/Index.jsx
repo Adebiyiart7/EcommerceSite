@@ -1,14 +1,38 @@
 // NODE_MODULES
 import { Container, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import {
+  FaShippingFast,
+  FaPhoneAlt,
+  FaDollarSign,
+  FaExchangeAlt,
+} from "react-icons/fa";
 
 // LOCAL IMPORTS
 import PageTitle from "../common/PageTitle";
 import oranges from "../../assets/images/oranges.jpg";
 import Button from "../common/Button";
 import Item from "../common/item2/Index";
+import Card from "../common/Card";
 
 const useStyles = makeStyles({
+  cards: {
+    marginTop: 50,
+    backgroundColor: "var(--primaryColor)"
+  },
+  cardContainer: {
+    display: "flex !important",
+    flexDirection: "row !important",
+    padding: "70px 0",
+    justifyContent: "space-around !important",
+  },
+  icon: {
+    border: "2px dashed var(--white)",
+    padding: 20,
+    color: "var(--white)",
+    fontSize: 30,
+    borderRadius: "50%",
+  },
   offer: {
     padding: "50px 0",
     backgroundColor: "var(--lightBackground)",
@@ -109,6 +133,30 @@ const Offer = ({ mediaQueries }) => {
           </Grid>
         </Grid>
       </Container>
+        <div className={classes.cards}>
+      <Container className={classes.cardContainer}>
+          <Card
+            title={"Free Shipping"}
+            subTitle={"On all orders over $99.00"}
+            icon={<FaShippingFast className={classes.icon} />}
+          />
+          <Card
+            title={"Money Guarantee"}
+            subTitle={"7 days money back guarantee"}
+            icon={<FaDollarSign className={classes.icon} />}
+          />
+          <Card
+            title={"Safe Transaction"}
+            subTitle={"Safe Transaction Guarantee"}
+            icon={<FaExchangeAlt className={classes.icon} />}
+          />
+          <Card
+            title={"Online Support"}
+            subTitle={"09029242729"}
+            icon={<FaPhoneAlt className={classes.icon} />}
+          />
+      </Container>
+        </div>
     </div>
   );
 };
