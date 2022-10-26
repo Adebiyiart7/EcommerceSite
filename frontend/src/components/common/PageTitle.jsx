@@ -1,4 +1,4 @@
-const PageTitle = ({ title, subTitle, mediaQueries }) => {
+const PageTitle = ({ title, subTitle, mediaQueries, textColor }) => {
   const { mediumDown, tabletDown } = mediaQueries;
 
   const fontSize = () => {
@@ -9,13 +9,13 @@ const PageTitle = ({ title, subTitle, mediaQueries }) => {
 
   const inlineStyles = {
     subTitle: {
-      color: "var(--primaryColor)",
+      color: textColor || "var(--primaryColor)",
       margin: 0,
       fontSize: 18,
       fontWeight: 700,
     },
     title: {
-      color: "var(--primaryText)",
+      color: textColor || "var(--primaryText)",
       margin: 0,
       fontSize: fontSize(),
       fontWeight: 900,

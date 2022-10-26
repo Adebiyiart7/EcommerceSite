@@ -14,6 +14,7 @@ import oranges from "../../assets/images/oranges.jpg";
 import Button from "../common/Button";
 import Item from "../common/item2/Index";
 import Card from "../common/Card";
+import different_fruits from "../../assets/images/different_fruits.jpg";
 
 const useStyles = makeStyles({
   cards: {
@@ -30,6 +31,7 @@ const useStyles = makeStyles({
   offer: {
     padding: "50px 0 0 0",
     marginBottom: 50,
+    backgroundImage: `url(${different_fruits})`,
     backgroundColor: "var(--lightBackground)",
   },
 });
@@ -55,7 +57,7 @@ const Offer = ({ mediaQueries }) => {
   const mediaStyles = {
     cardContainer: {
       display: tabletDown ? "block" : "flex",
-      flexDirection: tabletDown ?  "column" : "row",
+      flexDirection: tabletDown ? "column" : "row",
       padding: "30px 0",
       justifyContent: "space-around",
     },
@@ -63,12 +65,23 @@ const Offer = ({ mediaQueries }) => {
 
   return (
     <div className={classes.offer}>
-      <PageTitle
-        title="Weekly Offer"
-        subTitle="Hurry and Grab Yours"
-        mediaQueries={mediaQueries}
-      />
-      <Container>
+      <Container
+        sx={{
+          backgroundColor: "var(--lightBackground)",
+          borderTop: "5px solid var(--primaryColor)",
+          paddingTop: "24px",
+          paddingBottom: "24px",
+          position: "relative",
+          top: "200px",
+          marginBottom: "200px",
+        }}
+      >
+        {" "}
+        <PageTitle
+          title="Weekly Offer"
+          subTitle="Hurry and Grab Yours"
+          mediaQueries={mediaQueries}
+        />
         <Grid container spacing={{ xs: 2 }}>
           <Grid item xs={12} sm={6} md={4}>
             <Item
