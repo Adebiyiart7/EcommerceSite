@@ -1,11 +1,12 @@
 // LOCAL IMPORTS
+import Offer from "../offer/Index";
+import Carousel from "../common/Carousel";
 import landing_1 from "../../assets/images/landing1.png";
 import landing_2 from "../../assets/images/landing2.png";
-import Carousel from "../common/Carousel";
-import Offer from "../offer/Index";
 import PopularCategories from "../PopularCategories";
 import PopularProducts from "../popularProducts";
 import Testimonies from "../testinonies/Index";
+import LatestNews from "../latestNews/Index";
 
 const Landing = ({ mediaQueries }) => {
   const slides = [
@@ -26,6 +27,7 @@ const Landing = ({ mediaQueries }) => {
       <PopularProducts mediaQueries={mediaQueries} />
       <Offer mediaQueries={mediaQueries} />
       <Testimonies mediaQueries={mediaQueries} />
+      <LatestNews mediaQueries={mediaQueries} />
     </div>
   );
 };

@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
   price: {
     fontWeight: 700,
-    fontSize: 18,
+    fontSize: 22,
     margin: "5px 0",
   },
   stars: {},

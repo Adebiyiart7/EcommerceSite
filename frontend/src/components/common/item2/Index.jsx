@@ -11,7 +11,8 @@ const useStyles = makeStyles({
   },
   discount: {
     fontWeight: 700,
-    fontSize: 16,
+    fontSize: 20,
+    opacity: "50%",
     margin: "5px 0",
     marginRight: 10,
   },
@@ -36,7 +37,7 @@ const useStyles = makeStyles({
   },
   price: {
     fontWeight: 700,
-    fontSize: 16,
+    fontSize: 20,
     margin: "5px 0",
   },
   right: {
