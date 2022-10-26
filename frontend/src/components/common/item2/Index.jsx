@@ -110,9 +110,9 @@ const Item = ({
         <div>
           <div>
             <strike className={classes.discount}>
-              ${parseInt(price * (discount / 100))}
+              ${price}
             </strike>
-            <span className={classes.price}>${price}</span>
+            <span className={classes.price}>${parseInt(price * (discount / 100))}</span>
           </div>
 
           <div className={classes.actions}>

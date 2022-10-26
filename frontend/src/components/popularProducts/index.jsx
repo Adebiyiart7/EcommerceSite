@@ -42,7 +42,7 @@ const PopularProducts = ({ mediaQueries }) => {
             <Item
               action={<ItemButton />}
               image={carrots}
-              price={20}
+              price={50}
               stars={4}
               title="Fresh Organic Carrot"
             />
@@ -51,7 +51,7 @@ const PopularProducts = ({ mediaQueries }) => {
             <Item
               action={<ItemButton />}
               image={carrots}
-              price={20}
+              price={50}
               stars={4}
               title="Fresh Organic Carrot"
             />
@@ -60,7 +60,7 @@ const PopularProducts = ({ mediaQueries }) => {
             <Item
               action={<ItemButton />}
               image={carrots}
-              price={20}
+              price={50}
               stars={4}
               title="Fresh Organic Carrot"
             />
@@ -69,7 +69,7 @@ const PopularProducts = ({ mediaQueries }) => {
             <Item
               action={<ItemButton />}
               image={carrots}
-              price={20}
+              price={50}
               stars={4}
               title="Fresh Organic Carrot"
             />
@@ -78,7 +78,7 @@ const PopularProducts = ({ mediaQueries }) => {
             <Item
               action={<ItemButton />}
               image={carrots}
-              price={20}
+              price={50}
               stars={4}
               title="Fresh Organic Carrot"
             />
@@ -87,7 +87,7 @@ const PopularProducts = ({ mediaQueries }) => {
             <Item
               action={<ItemButton />}
               image={carrots}
-              price={20}
+              price={50}
               stars={4}
               title="Fresh Organic Carrot"
             />
@@ -96,7 +96,7 @@ const PopularProducts = ({ mediaQueries }) => {
             <Item
               action={<ItemButton />}
               image={carrots}
-              price={20}
+              price={50}
               stars={4}
               title="Fresh Organic Carrot"
             />
@@ -105,7 +105,7 @@ const PopularProducts = ({ mediaQueries }) => {
             <Item
               action={<ItemButton />}
               image={carrots}
-              price={20}
+              price={50}
               stars={4}
               title="Fresh Organic Carrot"
             />
