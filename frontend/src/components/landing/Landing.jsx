@@ -5,6 +5,7 @@ import Carousel from "../common/Carousel";
 import Offer from "../offer/Index";
 import PopularCategories from "../PopularCategories";
 import PopularProducts from "../popularProducts";
+import Testimonies from "../testinonies/Index";
 
 const Landing = ({ mediaQueries }) => {
   const slides = [
@@ -24,6 +25,7 @@ const Landing = ({ mediaQueries }) => {
       <PopularCategories mediaQueries={mediaQueries} />
       <PopularProducts mediaQueries={mediaQueries} />
       <Offer mediaQueries={mediaQueries} />
+      <Testimonies mediaQueries={mediaQueries} />
     </div>
   );
 };

@@ -18,13 +18,7 @@ import Card from "../common/Card";
 const useStyles = makeStyles({
   cards: {
     marginTop: 50,
-    backgroundColor: "var(--primaryColor)"
-  },
-  cardContainer: {
-    display: "flex !important",
-    flexDirection: "row !important",
-    padding: "70px 0",
-    justifyContent: "space-around !important",
+    backgroundColor: "var(--primaryColor)",
   },
   icon: {
     border: "2px dashed var(--white)",
@@ -34,7 +28,8 @@ const useStyles = makeStyles({
     borderRadius: "50%",
   },
   offer: {
-    padding: "50px 0",
+    padding: "50px 0 0 0",
+    marginBottom: 50,
     backgroundColor: "var(--lightBackground)",
   },
 });
@@ -54,7 +49,17 @@ const ItemButton = ({ mediaQueries }) => {
 };
 
 const Offer = ({ mediaQueries }) => {
+  const { tabletDown } = mediaQueries;
   const classes = useStyles();
+
+  const mediaStyles = {
+    cardContainer: {
+      display: tabletDown ? "block" : "flex",
+      flexDirection: tabletDown ?  "column" : "row",
+      padding: "30px 0",
+      justifyContent: "space-around",
+    },
+  };
 
   return (
     <div className={classes.offer}>
@@ -133,30 +138,37 @@ const Offer = ({ mediaQueries }) => {
           </Grid>
         </Grid>
       </Container>
-        <div className={classes.cards}>
-      <Container className={classes.cardContainer}>
+      <div className={classes.cards}>
+        <Container
+          className={classes.cardContainer}
+          sx={mediaStyles.cardContainer}
+        >
           <Card
             title={"Free Shipping"}
             subTitle={"On all orders over $99.00"}
             icon={<FaShippingFast className={classes.icon} />}
+            textColor={"var(--white)"}
           />
           <Card
             title={"Money Guarantee"}
             subTitle={"7 days money back guarantee"}
             icon={<FaDollarSign className={classes.icon} />}
+            textColor={"var(--white)"}
           />
           <Card
             title={"Safe Transaction"}
             subTitle={"Safe Transaction Guarantee"}
             icon={<FaExchangeAlt className={classes.icon} />}
+            textColor={"var(--white)"}
           />
           <Card
             title={"Online Support"}
             subTitle={"09029242729"}
             icon={<FaPhoneAlt className={classes.icon} />}
+            textColor={"var(--white)"}
           />
-      </Container>
-        </div>
+        </Container>
+      </div>
     </div>
   );
 };

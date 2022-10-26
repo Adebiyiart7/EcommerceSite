@@ -19,6 +19,7 @@ const PageTitle = ({ title, subTitle, mediaQueries }) => {
       margin: 0,
       fontSize: fontSize(),
       fontWeight: 900,
+      fontFamily: "'Roboto', sans-serif"
     },
     titleContainer: {
       textAlign: "center",
