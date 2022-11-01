@@ -75,7 +75,7 @@ const Navbar = ({ mediaQueries }) => {
   return (
     <Container>
       <div className={classes.navbar} style={mediaStyles.navbar}>
-        <div className={classes.logoContainer}>
+        <a href="/" className={classes.logoContainer}>
           {mediumDown ? (
             <img className={classes.logo} src={logo_sm} alt="logo" />
           ) : (
@@ -86,7 +86,7 @@ const Navbar = ({ mediaQueries }) => {
               alt="logo"
             />
           )}
-        </div>
+        </a>
         <div className={classes.center}>
           {!media650Down && <Category />}
           {!media1000Down && <Navigations media1000Down={media1000Down} />}

@@ -64,7 +64,7 @@ const categoriesButton = {
     fontWeight: 700,
     fontSize: 16,
     padding: "10px 20px",
-    fontFamily: "Roboto",
+    fontFamily: "'Roboto', serif",
     marginRight: 20,
     width: 200,
   },

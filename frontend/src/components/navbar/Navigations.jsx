@@ -1,5 +1,6 @@
 // NODE_MODULES
 import { makeStyles } from "@mui/styles";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   nav: {
@@ -35,18 +36,18 @@ const Navigations = ({ media1000Down }) => {
 
   return (
     <ul className={classes.navs} style={mediaStyles.navs}>
-      <a href="/" className={classes.navLink} style={mediaStyles.navLink}>
+      <Link to="/" className={classes.navLink} style={mediaStyles.navLink}>
         <li className={classes.nav}>Home</li>
-      </a>
-      <a href="/about" className={classes.navLink} style={mediaStyles.navLink}>
+      </Link>
+      <Link to="/about" className={classes.navLink} style={mediaStyles.navLink}>
         <li className={classes.nav}>About</li>
-      </a>
-      <a href="/contact" className={classes.navLink} style={mediaStyles.navLink}>
+      </Link>
+      <Link to="/contact" className={classes.navLink} style={mediaStyles.navLink}>
         <li className={classes.nav}>Contact</li>
-      </a>
-      <a href="/blog" className={classes.navLink} style={mediaStyles.navLink}>
+      </Link>
+      <Link to="/blog" className={classes.navLink} style={mediaStyles.navLink}>
         <li className={classes.nav}>Blog</li>
-      </a>
+      </Link>
     </ul>
   );
 };
