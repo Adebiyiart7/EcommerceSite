@@ -10,43 +10,54 @@ import farmer4 from "../../assets/images/farmer4.jpg";
 import PageTitle from "../../components/common/PageTitle";
 
 const Professionals = ({ mediaQueries }) => {
-
   return (
-    <Container sx={{marginTop: "50px"}}>
-      <PageTitle
-        mediaQueries={mediaQueries}
-        title={"Our Professionals"}
-        subTitle={"Meet Our Dedicated Team"}
-      />
-      <div>
-        <Grid container>
-          <Grid item xs={12} sm={6} md={3}>
-            <Card
-              image={farmer1}
-              title={"John Doe"}
-              subTitle={"Chief Agriculturist"}
-            />
+    <div
+      style={{
+        padding: "30px 0",
+        marginTop: "50px",
+        backgroundColor: "var(--lightBackground)",
+      }}
+    >
+      <Container>
+        <PageTitle
+          mediaQueries={mediaQueries}
+          title={"Our Professionals"}
+          subTitle={"Meet Our Dedicated Team"}
+        />
+        <div>
+          <Grid container>
+            <Grid item xs={12} sm={6} md={3}>
+              <Card
+                image={farmer1}
+                title={"John Doe"}
+                subTitle={"Chief Agriculturist"}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <Card
+                image={farmer2}
+                title={"Taylor Swift"}
+                subTitle={"Manager"}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <Card
+                image={farmer3}
+                title={"Mike Johnson"}
+                subTitle={"Agriculturist"}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <Card
+                image={farmer4}
+                title={"Immanuel Kant"}
+                subTitle={"Technical Expert"}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Card image={farmer2} title={"Taylor Swift"} subTitle={"Manager"} />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Card
-              image={farmer3}
-              title={"Mike Johnson"}
-              subTitle={"Agriculturist"}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Card
-              image={farmer4}
-              title={"Immanuel Kant"}
-              subTitle={"Technical Expert"}
-            />
-          </Grid>
-        </Grid>
-      </div>
-    </Container>
+        </div>
+      </Container>
+    </div>
   );
 };
 

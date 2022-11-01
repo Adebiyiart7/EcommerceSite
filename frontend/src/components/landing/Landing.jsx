@@ -8,6 +8,7 @@ import PopularProducts from "../popularProducts";
 import Testimonies from "../testinonies/Index";
 import LatestNews from "../latestNews/Index";
 import Footer from "../footer/Index";
+import NewsLetter from "../NewsLetter";
 
 const Landing = ({ mediaQueries }) => {
   const slides = [
@@ -29,6 +30,7 @@ const Landing = ({ mediaQueries }) => {
       <Offer mediaQueries={mediaQueries} />
       <Testimonies mediaQueries={mediaQueries} />
       <LatestNews mediaQueries={mediaQueries} />
+      <NewsLetter mediaQueries={mediaQueries} />
       <Footer mediaQueries={mediaQueries} />
     </div>
   );

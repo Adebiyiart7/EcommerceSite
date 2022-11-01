@@ -4,10 +4,8 @@ import { useContext } from "react";
 // LOCAL IMPORTS
 import Navbar from "../../components/navbar/Navbar";
 import { AppContext } from "../../App";
-import Welcome from "./Welcome";
+import PageTitle from "../../components/common/PageTitle";
 import Footer from "../../components/footer/Index";
-import Professionals from "./Professionals";
-import OurUniqueness from "./OurUniqueness";
 import NewsLetter from "../../components/NewsLetter";
 
 const About = () => {
@@ -16,9 +14,7 @@ const About = () => {
   return (
     <div>
       <Navbar mediaQueries={mediaQueries} />
-      <Welcome mediaQueries={mediaQueries} />
-      <OurUniqueness mediaQueries={mediaQueries} />
-      <Professionals mediaQueries={mediaQueries} />
+      <PageTitle title={"Contact Us"} mediaQueries={mediaQueries} />
       <NewsLetter mediaQueries={mediaQueries} />
       <Footer mediaQueries={mediaQueries} />
     </div>
