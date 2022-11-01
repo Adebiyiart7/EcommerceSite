@@ -17,23 +17,47 @@ const useStyles = makeStyles({
   },
 });
 
-const Button = ({ startIcon, text, endIcon, customStyles, onClick }) => {
+const Button = ({ startIcon, text, endIcon, onClick, width }) => {
   const classes = useStyles();
+  const categoriesIcon = {
+    position: "relative",
+    top: 3,
+    fontSize: 20,
+  };
+
+  const inlineStyles = {
+    button: {
+      fontWeight: 700,
+      fontSize: 16,
+      padding: "10px 20px",
+      fontFamily: "'Roboto', serif",
+      marginRight: 20,
+      width: width,
+    },
+    startIcon: {
+      ...categoriesIcon,
+      marginRight: 8,
+    },
+    endIcon: {
+      ...categoriesIcon,
+      marginLeft: 8,
+    },
+  };
 
   return (
     <button
       onClick={onClick}
       className={classes.button}
-      style={customStyles.button}
+      style={inlineStyles.button}
     >
       {startIcon && (
-        <span className={classes.startIcon} style={customStyles.startIcon}>
+        <span className={classes.startIcon} style={inlineStyles.startIcon}>
           {startIcon}
         </span>
       )}
       {text}
       {endIcon && (
-        <span className={classes.endIcon} style={customStyles.endIcon}>
+        <span className={classes.endIcon} style={inlineStyles.endIcon}>
           {endIcon}
         </span>
       )}

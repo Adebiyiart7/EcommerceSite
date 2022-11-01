@@ -53,31 +53,6 @@ const useStyles = makeStyles({
   },
 });
 
-const categoriesIcon = {
-  position: "relative",
-  top: 3,
-  fontSize: 20,
-};
-
-const categoriesButton = {
-  button: {
-    fontWeight: 700,
-    fontSize: 16,
-    padding: "10px 20px",
-    fontFamily: "'Roboto', serif",
-    marginRight: 20,
-    width: 200,
-  },
-  startIcon: {
-    ...categoriesIcon,
-    marginRight: 8,
-  },
-  endIcon: {
-    ...categoriesIcon,
-    marginLeft: 8,
-  },
-};
-
 const Category = () => {
   const [showCategories, setShowCategories] = useState(false);
   const classes = useStyles();
@@ -95,7 +70,6 @@ const Category = () => {
       <Button
         startIcon={<BiCategory />}
         endIcon={<IoChevronDown />}
-        customStyles={categoriesButton}
         text="All Categories"
         onClick={handleShowCategories}
       />

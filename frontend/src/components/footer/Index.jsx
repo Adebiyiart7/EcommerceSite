@@ -210,9 +210,9 @@ const Footer = ({ mediaQueries }) => {
             <a
               className={classes.brandName}
               target="blank"
-              href="https://biyitech.com"
+              href="https://xtraaa.net"
             >
-              BiyiTech
+              Xtraaa
             </a>
           </strong>
           , All Rights Reserved
