@@ -15,6 +15,7 @@ const useStyles = makeStyles({
     margin: 0,
     color: "var(--lightText)",
     fontWeight: 300,
+    lineHeight: 1.5,
   },
   title: {
     marginBottom: 5,

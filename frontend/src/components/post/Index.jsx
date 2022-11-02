@@ -28,6 +28,7 @@ const useStyles = makeStyles({
     marginBottom: 0,
     color: "var(--lightText)",
     fontSize: 15,
+    lineHeight: 1.5,
   },
 });
 

@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles({
   nav: {
     listStyle: "none",
-    fontWeight: 400,
-    fontSize: 14,
+    fontWeight: 500,
+    fontSize: 16,
+    fontFamily: "Roboto",
     padding: "6px 12px",
     marginRight: 10,
     borderRadius: 4,
@@ -26,7 +27,7 @@ const Navigations = ({ media1000Down }) => {
 
   const mediaStyles = {
     navLink: {
-      padding: "5px 0"
+      padding: "5px 0",
     },
     navs: {
       flexDirection: media1000Down ? "column" : "row",
@@ -39,10 +40,17 @@ const Navigations = ({ media1000Down }) => {
       <Link to="/" className={classes.navLink} style={mediaStyles.navLink}>
         <li className={classes.nav}>Home</li>
       </Link>
+      <Link to="/shop" className={classes.navLink} style={mediaStyles.navLink}>
+        <li className={classes.nav}>Shop</li>
+      </Link>
       <Link to="/about" className={classes.navLink} style={mediaStyles.navLink}>
         <li className={classes.nav}>About</li>
       </Link>
-      <Link to="/contact" className={classes.navLink} style={mediaStyles.navLink}>
+      <Link
+        to="/contact"
+        className={classes.navLink}
+        style={mediaStyles.navLink}
+      >
         <li className={classes.nav}>Contact</li>
       </Link>
       <Link to="/blog" className={classes.navLink} style={mediaStyles.navLink}>
