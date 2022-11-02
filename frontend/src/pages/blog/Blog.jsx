@@ -8,6 +8,7 @@ import PageTitle from "../../components/common/PageTitle";
 import Footer from "../../components/footer/Index";
 import NewsLetter from "../../components/NewsLetter";
 import Aside from "./aside";
+import { Container } from "@mui/material";
 
 const Blog = () => {
   const { mediaQueries } = useContext(AppContext);
@@ -15,10 +16,9 @@ const Blog = () => {
 
   const inlineStyles = {
     blogContainer: {
-      backgroundColor: "var(--lightBackground)",
       display: "flex",
       flexDirection: tabletDown && "column",
-      justifyContent: "space-between"
+      justifyContent: "space-between",
     },
   };
 
@@ -30,9 +30,16 @@ const Blog = () => {
         subTitle={"Learn More About Us"}
         mediaQueries={mediaQueries}
       />
-      <div style={inlineStyles.blogContainer}>
-        <main>Content</main>
-        <Aside mediaQueries={mediaQueries} />
+      <div
+        style={{
+          backgroundColor: "var(--lightBackground)",
+          padding: "25px 0"
+        }}
+      >
+        <Container style={inlineStyles.blogContainer}>
+          <main>Content</main>
+          <Aside mediaQueries={mediaQueries} />
+        </Container>
       </div>
       <NewsLetter mediaQueries={mediaQueries} />
       <Footer mediaQueries={mediaQueries} />
