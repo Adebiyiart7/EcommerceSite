@@ -5,7 +5,7 @@ import landing_1 from "../../assets/images/landing1.png";
 import landing_2 from "../../assets/images/landing2.png";
 import PopularCategories from "../PopularCategories";
 import PopularProducts from "../popularProducts";
-import Testimonies from "../testinonies/Index";
+import Testimonies from "../testimonies";
 import LatestNews from "../latestNews/Index";
 import Footer from "../footer/Index";
 import NewsLetter from "../NewsLetter";

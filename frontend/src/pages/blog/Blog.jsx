@@ -9,6 +9,7 @@ import Footer from "../../components/footer/Index";
 import NewsLetter from "../../components/NewsLetter";
 import Aside from "./aside";
 import { Container } from "@mui/material";
+import Main from "./main";
 
 const Blog = () => {
   const { mediaQueries } = useContext(AppContext);
@@ -25,19 +26,19 @@ const Blog = () => {
   return (
     <div>
       <Navbar mediaQueries={mediaQueries} />
-      <PageTitle
-        title={"Blog List"}
-        subTitle={"Learn More About Us"}
-        mediaQueries={mediaQueries}
-      />
       <div
         style={{
           backgroundColor: "var(--lightBackground)",
-          padding: "25px 0"
+          padding: "25px 0",
         }}
       >
+        <PageTitle
+          title={"Blog List"}
+          subTitle={"Learn More About Us"}
+          mediaQueries={mediaQueries}
+        />
         <Container style={inlineStyles.blogContainer}>
-          <main>Content</main>
+          <Main mediaQueries={mediaQueries} />
           <Aside mediaQueries={mediaQueries} />
         </Container>
       </div>

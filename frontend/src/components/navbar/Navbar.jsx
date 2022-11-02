@@ -42,6 +42,7 @@ const useStyles = makeStyles({
     border: "1px solid var(--primaryBorder)",
     borderRadius: "50%",
     fontSize: 18,
+    cursor: "pointer",
     marginRight: 10,
     "&:hover": {
       backgroundColor: "var(--primaryColor)",
@@ -61,7 +62,9 @@ const Navbar = ({ mediaQueries }) => {
   const handleShowMobileNav = () => setShowMobileNavs(!showMobileNavs);
 
   const mediaStyles = {
-    avatar: {},
+    avatar: {
+      cursor: "pointer",
+    },
     logo: {
       height: largeDown && 55,
     },

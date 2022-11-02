@@ -15,9 +15,22 @@ const useStyles = makeStyles({
       borderColor: "var(--primaryColor)",
     },
   },
+  buttonAlt: {
+    color: "var(--white)",
+    border: "1px solid var(--primaryColor)",
+    padding: "6px 12px",
+    backgroundColor: "var(--primaryColor)",
+    borderRadius: 4,
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "transparent",
+      color: "var(--primaryText)",
+      borderColor: "var(--primaryBorder)",
+    },
+  }
 });
 
-const Button = ({ startIcon, text, endIcon, onClick, width }) => {
+const Button = ({ startIcon, text, endIcon, onClick, width, altButton }) => {
   const classes = useStyles();
   const categoriesIcon = {
     position: "relative",
@@ -47,7 +60,7 @@ const Button = ({ startIcon, text, endIcon, onClick, width }) => {
   return (
     <button
       onClick={onClick}
-      className={classes.button}
+      className={altButton ? classes.buttonAlt : classes.button}
       style={inlineStyles.button}
     >
       {startIcon && (

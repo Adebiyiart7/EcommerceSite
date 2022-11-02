@@ -10,7 +10,7 @@ const Aside = ({ mediaQueries }) => {
 
   const inlineStyles = {
     aside: {
-      width: tabletUp && 300,
+      minWidth: tabletUp && 300,
     },
   };
 
@@ -19,9 +19,15 @@ const Aside = ({ mediaQueries }) => {
       <SearchBox />
       <br />
       <RecentPosts />
-      <div style={{marginTop: 16}}>
-        <span style={{color: "var(--lightText)", fontSize: 14, }}>Advertisement</span>
-        <img src={advert} alt="" />
+      <div style={{ marginTop: 16 }}>
+        {tabletUp && (
+          <>
+            <span style={{ color: "var(--lightText)", fontSize: 14 }}>
+              Advertisement
+            </span>
+            <img src={advert} alt="" />
+          </>
+        )}
       </div>
     </aside>
   );
