@@ -18,8 +18,7 @@ const useStyles = makeStyles({
   text: {
     fontWeight: 500,
     color: "var(--primaryText)",
-
-  }
+  },
 });
 
 const Address = () => {
@@ -30,7 +29,9 @@ const Address = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <FaMapMarkerAlt className={classes.contactIcon} />
-          <div className={classes.text}>Ademola street, 9 Main land, Eko, Spain</div>
+          <div className={classes.text}>
+            Ademola Akintunde Street, Kubwa, Abuja Nigeria.
+          </div>
         </Grid>
         <Grid item xs={12} sm={6}>
           <MdEmail className={classes.contactIcon} />
