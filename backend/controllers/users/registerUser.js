@@ -11,7 +11,7 @@ const User = require("../../models/user");
 
 /**
  * @description   Create a user
- * @route         api/users/register
+ * @route         POST api/users/register
  * @access        public
  */
 const registerUser = asyncHandler(async (req, res) => {

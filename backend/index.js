@@ -8,6 +8,7 @@ const connectDB = require("./config/db");
 
 // LOCAL IMPORT
 const userRoutes = require("./routes/users");
+const productRoutes = require("./routes/products");
 const errorMiddleware = require("./middleware/errorMiddleware");
 
 // create an express app
@@ -22,6 +23,7 @@ app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
 app.use(errorMiddleware);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

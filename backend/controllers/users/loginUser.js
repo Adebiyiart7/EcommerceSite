@@ -4,13 +4,11 @@ const bcrypt = require("bcrypt");
 
 // LOCAL IMPORTS
 const generateToken = require("../../utils/generateToken");
-
-// LOCAL IMPORTS
 const User = require("../../models/user");
 
 /**
- * @description  login user
- * @route         api/users/login
+ * @description   login user
+ * @route         POST api/users/login
  * @access        public
  */
 const loginUser = asyncHandler(async (req, res) => {
