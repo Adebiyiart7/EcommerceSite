@@ -155,7 +155,7 @@ const Footer = ({ mediaQueries }) => {
             <ul className={classes.lists}>
               <li className={classes.contactList}>
                 <FaMapMarkerAlt className={classes.contactIcon} />
-                <span>Ademola Akintunde Street, Kubwa, Abuja Nigeria.</span>
+                <span>Ademola Akintunde Street, Kubwa, Abuja.</span>
               </li>
               <li className={classes.contactList}>
                 <FaPhoneAlt className={classes.contactIcon} />

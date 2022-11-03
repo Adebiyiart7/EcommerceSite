@@ -1,16 +1,26 @@
-import React from "react";
+// NODE_MODULES
+import { makeStyles } from "@mui/styles";
 
 // LOCAL IMPORTS
-import SearchBox from "../../../components/common/SearchBox";
-import RecentPosts from "./RecentPosts";
 import advert from "../../../assets/images/ad1.jpg";
+import Items from "../../../components/category/Item";
+import SearchBox from "../../../components/common/SearchBox";
+
+const useStyles = makeStyles({
+  lists: {
+    borderTop: "4px solid var(--primaryColor)",
+    padding: 0,
+  },
+});
 
 const Aside = ({ mediaQueries }) => {
-  const { tabletUp } = mediaQueries;
+  const classes = useStyles();
+  const { laptopUp, laptopDown } = mediaQueries;
 
   const inlineStyles = {
     aside: {
-      minWidth: tabletUp && 300,
+      minWidth: laptopUp && 300,
+      marginTop: laptopDown && 20,
     },
   };
 
@@ -18,9 +28,11 @@ const Aside = ({ mediaQueries }) => {
     <aside style={inlineStyles.aside}>
       <SearchBox />
       <br />
-      <RecentPosts />
+      <ul className={classes.lists}>
+        <Items />
+      </ul>
       <div style={{ marginTop: 16 }}>
-        {tabletUp && (
+        {laptopUp && (
           <>
             <div style={{ color: "var(--lightText)", fontSize: 14 }}>
               Advertisement

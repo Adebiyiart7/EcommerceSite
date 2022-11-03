@@ -37,14 +37,6 @@ const useStyles = makeStyles({
   },
 });
 
-/**
- * @slides
- * The slide param is an array of objects of 2 parameters
- * 1. image.
- * 2. children: Which is a component od what should be
- * displayed of that particular slide/image.
- *
- */
 const Carousel = ({ slides }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const classes = useStyles();

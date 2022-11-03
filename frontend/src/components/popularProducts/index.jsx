@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ItemButton = () => {
+export const ItemButton = () => {
   const customStyles = {
     button: {
       textTransform: "uppercase",

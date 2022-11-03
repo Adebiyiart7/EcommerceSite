@@ -8,6 +8,7 @@ import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Contact from "./pages/contact/Contact"
 import Blog from "./pages/blog/Blog";
+import Shop from "./pages/shop/Shop";
 
 export const AppContext = createContext();
 
@@ -41,6 +42,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/shop" element={<Shop />} />
         </Routes>
       </Router>
     </AppContext.Provider>

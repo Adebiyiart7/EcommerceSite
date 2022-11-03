@@ -11,14 +11,14 @@ import Aside from "./aside";
 import { Container } from "@mui/material";
 import Main from "./main";
 
-const Blog = () => {
+const Shop = () => {
   const { mediaQueries } = useContext(AppContext);
-  const { tabletDown } = mediaQueries;
+  const { laptopDown } = mediaQueries;
 
   const inlineStyles = {
-    blogContainer: {
+    shopContainer: {
       display: "flex",
-      flexDirection: tabletDown && "column",
+      flexDirection: laptopDown && "column",
       justifyContent: "space-between",
     },
   };
@@ -33,11 +33,11 @@ const Blog = () => {
         }}
       >
         <PageTitle
-          title={"Blog List"}
-          subTitle={"More About FreshFarm"}
+          title={"Shop List"}
+          subTitle={"Fresh From Our Farm"}
           mediaQueries={mediaQueries}
         />
-        <Container style={inlineStyles.blogContainer}>
+        <Container style={inlineStyles.shopContainer}>
           <Main mediaQueries={mediaQueries} />
           <Aside mediaQueries={mediaQueries} />
         </Container>
@@ -48,4 +48,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default Shop;

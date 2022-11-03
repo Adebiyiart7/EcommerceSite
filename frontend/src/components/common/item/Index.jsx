@@ -7,16 +7,18 @@ import { BiHeart } from "react-icons/bi";
 const useStyles = makeStyles({
   image: {
     width: "100%",
-    maxWidth: 250,
+    // maxWidth: 250,
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7,
   },
   itemContainer: {
     position: "relative",
     borderRadius: 7,
     textDecoration: "none",
     textAlign: "center",
-    padding: 16,
     maxWidth: 320,
     margin: "auto",
+    backgroundColor: "var(--white)",
     "&:hover": {
       border: "1px solid var(--primaryColor)",
     },
@@ -28,7 +30,9 @@ const useStyles = makeStyles({
     margin: "5px 0",
   },
   stars: {},
-  title: {},
+  title: {
+    marginTop: 0,
+  },
   wishListIcon: {
     position: "absolute",
     top: 16,
@@ -55,10 +59,12 @@ const Item = ({ action, image, price, stars, title }) => {
       <Link to="/">
         <img className={classes.image} src={image} alt="" />
       </Link>
-      <h3 className={classes.title}>{title}</h3>
-      <Rating value={stars} readOnly sx={{ color: "var(--primaryColor)" }} />
-      <div className={classes.price}>${price}</div>
-      <div>{action}</div>
+      <div style={{ padding: 16 }}>
+        <h3 className={classes.title}>{title}</h3>
+        <Rating value={stars} readOnly sx={{ color: "var(--primaryColor)" }} />
+        <div className={classes.price}>${price}</div>
+        <div>{action}</div>
+      </div>
     </div>
   );
 };
