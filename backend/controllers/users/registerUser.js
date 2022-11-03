@@ -1,6 +1,10 @@
 const Joi = require("joi");
 const _ = require("lodash");
 const asyncHandler = require("express-async-handler");
+const bcrypt = require("bcrypt");
+
+// LOCAL IMPORTS
+const generateToken = require("../../utils/generateToken");
 
 // LOCAL IMPORTS
 const User = require("../../models/user");
@@ -26,20 +30,33 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   // check if user already exist
-  let user = await User.findOne({ email: req.body.email });
+  const { fullname, email, password } = req.body;
+  let user = await User.findOne({ email });
   if (user) {
     res.status(400);
     throw new Error("User already exist!");
   }
 
-  // create new user
-  const { fullname, email, password } = req.body;
-  user = await User.create({
-    fullname: fullname,
-    email: email,
-    password: password,
-  });
-  res.json(_.pick(user, ["fullname", "email"]));
+  try {
+    // hash password
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
+
+    // create new user
+    user = await User.create({
+      fullname: fullname,
+      email: email,
+      password: hash,
+    });
+
+    return res.status(201).json({
+      ..._.pick(user, ["fullname", "email"]),
+      token: generateToken(user._id),
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send("Error creating user!");
+  }
 });
 
 module.exports = registerUser;
