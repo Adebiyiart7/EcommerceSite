@@ -13,6 +13,7 @@ import logo_sm from "../../assets/images/logo_sm.png";
 import { Container } from "@mui/material";
 import Category from "../category";
 import Navigations from "./Navigations";
+import MenuList from "./MenuList";
 
 const useStyles = makeStyles({
   center: {
@@ -20,6 +21,17 @@ const useStyles = makeStyles({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  menuList: {
+    position: "absolute",
+    top: "40px",
+    right: 0,
+    width: 198,
+    border: "1px solid var(--primaryBorder)",
+    borderTop: "4px solid var(--primaryColor)",
+    borderRadius: 4,
+    padding: 0,
+    zIndex: "var(--zIndex1)",
   },
   logo: {
     height: 60,
@@ -32,6 +44,7 @@ const useStyles = makeStyles({
     padding: "10px 0",
   },
   right: {
+    position: "relative",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -40,12 +53,13 @@ const useStyles = makeStyles({
     padding: 7,
     color: "var(--primaryText)",
     border: "1px solid var(--primaryBorder)",
-    borderRadius: "50%",
+    borderRadius: 4,
     fontSize: 18,
     cursor: "pointer",
     marginRight: 10,
     "&:hover": {
       backgroundColor: "var(--primaryColor)",
+      borderColor: "var(--primaryColor)",
       color: "var(--white)",
     },
   },
@@ -53,6 +67,7 @@ const useStyles = makeStyles({
 
 const Navbar = ({ mediaQueries }) => {
   const [showMobileNavs, setShowMobileNavs] = useState(false);
+  const [showUserMenuList, setShowUserMenuList] = useState(false);
   const theme = useTheme();
   const media1000Down = useMediaQuery(theme.breakpoints.down(1000));
   const media650Down = useMediaQuery(theme.breakpoints.down(650));
@@ -70,6 +85,9 @@ const Navbar = ({ mediaQueries }) => {
     },
     menuBar: {
       display: media1000Down ? "block" : "none",
+    },
+    menuList: {
+      display: showUserMenuList ? "block" : "none"
     },
     mobileNavs: { display: showMobileNavs ? "block" : "none" },
     navbar: { padding: largeDown && "7px 0" },
@@ -102,11 +120,18 @@ const Navbar = ({ mediaQueries }) => {
             style={mediaStyles.menuBar}
             onClick={handleShowMobileNav}
           />
-          <Avatar
-            style={mediaStyles.avatar}
-            src=""
-            sx={{ width: 34, height: 34 }}
-          />
+          <span>
+            <Avatar
+              variant="rounded"
+              onClick={() => setShowUserMenuList(!showUserMenuList)}
+              style={mediaStyles.avatar}
+              src=""
+              sx={{ width: 34, height: 34, bgcolor: "var(--primaryColor)" }}
+            />
+            <ul className={classes.menuList} style={mediaStyles.menuList}>
+              <MenuList />
+            </ul>
+          </span>
         </div>
       </div>
       {media1000Down && (

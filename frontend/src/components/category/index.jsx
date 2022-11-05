@@ -6,7 +6,7 @@ import { makeStyles } from "@mui/styles";
 // LOCAL IMPORTS
 import Button from "../common/Button";
 import { useState } from "react";
-import Items from "./Item";
+import MenuList from "./MenuList";
 
 const useStyles = makeStyles({
   categories: {
@@ -69,7 +69,7 @@ const Category = () => {
       />
       <div className={classes.categories} style={mediaStyles.categories}>
         <ul className={classes.lists}>
-          <Items />
+          <MenuList />
         </ul>
       </div>
     </div>

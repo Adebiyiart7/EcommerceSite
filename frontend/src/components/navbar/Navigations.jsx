@@ -56,6 +56,9 @@ const Navigations = ({ media1000Down }) => {
       <Link to="/blog" className={classes.navLink} style={mediaStyles.navLink}>
         <li className={classes.nav}>Blog</li>
       </Link>
+            <Link to="/login" className={classes.navLink} style={mediaStyles.navLink}>
+        <li className={classes.nav}>Login</li>
+      </Link>
     </ul>
   );
 };

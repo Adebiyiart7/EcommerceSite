@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 
 // LOCAL IMPORTS
 import advert from "../../../assets/images/ad1.jpg";
-import Items from "../../../components/category/Item";
+import MenuList from "../../../components/category/MenuList";
 import SearchBox from "../../../components/common/SearchBox";
 
 const useStyles = makeStyles({
@@ -29,7 +29,7 @@ const Aside = ({ mediaQueries }) => {
       <SearchBox />
       <br />
       <ul className={classes.lists}>
-        <Items />
+        <MenuList />
       </ul>
       <div style={{ marginTop: 16 }}>
         {laptopUp && (

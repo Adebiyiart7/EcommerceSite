@@ -6,9 +6,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // LOCAL IMPORTS
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
-import Contact from "./pages/contact/Contact"
+import Contact from "./pages/contact/Contact";
 import Blog from "./pages/blog/Blog";
 import Shop from "./pages/shop/Shop";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 
 export const AppContext = createContext();
 
@@ -43,6 +45,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
     </AppContext.Provider>

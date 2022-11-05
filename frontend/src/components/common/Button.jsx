@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Button = ({ startIcon, text, endIcon, onClick, width, altButton }) => {
+const Button = ({ startIcon, text, endIcon, onClick, width,height, altButton }) => {
   const classes = useStyles();
   const categoriesIcon = {
     position: "relative",
@@ -46,6 +46,7 @@ const Button = ({ startIcon, text, endIcon, onClick, width, altButton }) => {
       fontFamily: "'Roboto', serif",
       marginRight: 20,
       width: width,
+      height: height
     },
     startIcon: {
       ...categoriesIcon,
