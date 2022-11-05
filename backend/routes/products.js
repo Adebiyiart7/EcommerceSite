@@ -4,13 +4,16 @@ const router = express.Router();
 // LOCAL IMPORTS
 const addProduct = require("../controllers/products/addProduct");
 const deleteProduct = require("../controllers/products/deleteProduct");
+const getOneProduct = require("../controllers/products/getOneProduct");
 const getProducts = require("../controllers/products/getProducts");
 const updateProduct = require("../controllers/products/updateProduct");
 const { protect } = require("../middleware/authMiddleware");
 
-router.get("/", getProducts);
-router.post("/", protect, addProduct);
-router.put("/:id", protect, updateProduct);
-router.delete("/:id", protect, deleteProduct);
+router.route("/").get(getProducts).post(protect, addProduct);
+router
+  .route("/:id")
+  .get(getOneProduct)
+  .put(protect, updateProduct)
+  .delete(protect, deleteProduct);
 
 module.exports = router;

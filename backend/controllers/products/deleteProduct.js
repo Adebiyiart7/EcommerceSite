@@ -21,7 +21,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
     // Delete Product
     await product.remove();
-    res.status(200).send("Product Deleted!");
+    res.status(200).send(`Product Deleted ${req.params.id}!`);
   } catch (error) {
     console.log(error);
     res.status(400);
