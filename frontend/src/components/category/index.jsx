@@ -11,9 +11,9 @@ import MenuList from "./MenuList";
 const useStyles = makeStyles({
   categories: {
     position: "absolute",
+    width: "100%",
   },
   lists: {
-    width: 198,
     border: "1px solid var(--primaryBorder)",
     borderTop: "4px solid var(--primaryColor)",
     borderRadius: 4,
@@ -21,30 +21,11 @@ const useStyles = makeStyles({
   },
 });
 
-const categoriesIcon = {
-  position: "relative",
-  top: 3,
-  fontSize: 20,
-};
-
-const categoriesButton = {
-  button: {
-    fontWeight: 700,
-    fontSize: 16,
-    padding: "10px 20px",
-    fontFamily: "'Roboto', serif",
-    marginRight: 20,
-    width: 200,
-  },
-  startIcon: {
-    ...categoriesIcon,
-    marginRight: 8,
-  },
-  endIcon: {
-    ...categoriesIcon,
-    marginLeft: 8,
-  },
-};
+// const categoriesIcon = {
+//   position: "relative",
+//   top: 3,
+//   fontSize: 20,
+// };
 
 const Category = () => {
   const [showCategories, setShowCategories] = useState(false);
@@ -61,9 +42,14 @@ const Category = () => {
   return (
     <div style={{ position: "relative", zIndex: "var(--zIndex1)" }}>
       <Button
+        color={
+          window.location.pathname === "/"
+            ? "var(--white)"
+            : "var(--primaryText)"
+        }
+        width={"100%"}
         startIcon={<BiCategory />}
         endIcon={<IoChevronDown />}
-        customStyles={categoriesButton}
         text="All Categories"
         onClick={handleShowCategories}
       />

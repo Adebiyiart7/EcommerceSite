@@ -102,7 +102,7 @@ const Login = () => {
             />
           </div>
           <br />
-          <Button text={"LOGIN"} width={"100%"} altButton />
+          <Button text={"LOGIN"} color="var(--white)" width={"100%"} altButton />
           <p className={classes.text}>
             Don't have an account?{" "}
             <Link to="/register">

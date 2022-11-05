@@ -3,7 +3,6 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   button: {
-    color: "var(--primaryText)",
     border: "1px solid var(--primaryBorder)",
     padding: "6px 12px",
     backgroundColor: "transparent",
@@ -30,7 +29,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Button = ({ startIcon, text, endIcon, onClick, width,height, altButton }) => {
+const Button = ({ startIcon, text, endIcon, onClick, width,height, altButton, color }) => {
   const classes = useStyles();
   const categoriesIcon = {
     position: "relative",
@@ -46,7 +45,8 @@ const Button = ({ startIcon, text, endIcon, onClick, width,height, altButton }) 
       fontFamily: "'Roboto', serif",
       marginRight: 20,
       width: width,
-      height: height
+      height: height,
+      color: color || "var(--primaryText)",
     },
     startIcon: {
       ...categoriesIcon,

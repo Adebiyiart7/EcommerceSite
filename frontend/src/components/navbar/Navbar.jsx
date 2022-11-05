@@ -52,7 +52,6 @@ const useStyles = makeStyles({
   },
   rightIcon: {
     padding: 7,
-    color: "var(--primaryText)",
     border: "1px solid var(--primaryBorder)",
     borderRadius: 4,
     fontSize: 18,
@@ -66,7 +65,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Navbar = ({ mediaQueries }) => {
+const Navbar = ({ mediaQueries, color }) => {
   const theme = useTheme();
   const classes = useStyles();
   const [showMobileNavs, setShowMobileNavs] = useState(false);
@@ -90,8 +89,14 @@ const Navbar = ({ mediaQueries }) => {
     menuList: {
       display: showUserMenuList ? "block" : "none",
     },
-    mobileNavs: { display: showMobileNavs ? "block" : "none" },
-    navbar: { padding: largeDown && "7px 0" },
+    mobileNavs: {
+      color: color ? color : "var(--primaryText)",
+      display: showMobileNavs ? "block" : "none",
+    },
+    navbar: {
+      color: color ? color : "var(--primaryText)",
+      padding: largeDown && "7px 0",
+    },
   };
 
   return (

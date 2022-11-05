@@ -9,6 +9,7 @@
   --primaryText: #344056;
   --secondaryColor: #222222;
   --white: #FFF;
+  --yellow: #fbe541;
 
   --zIndex1: 1111;
   --zIndex2: 1112;}
@@ -22,4 +23,8 @@ body {
     sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
 }

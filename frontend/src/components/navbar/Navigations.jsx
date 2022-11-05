@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     borderRadius: 4,
   },
   navLink: {
-    color: "var(--primaryText)",
+    // color: "var(--primaryText)",
     textDecoration: "none",
   },
   navs: {
