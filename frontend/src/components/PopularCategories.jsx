@@ -54,8 +54,8 @@ const PopularCategories = ({ mediaQueries }) => {
       <Container>
         <Grid container className={classes.popularCatogories}>
           {categories.map((category, index) => (
-            <Grid item xs={4} md={2}>
-              <a key={index} href={category.link} className={classes.category}>
+            <Grid key={index} item xs={4} md={2}>
+              <a href={category.link} className={classes.category}>
                 <img className={classes.image} src={category.image} alt="" />
                 <h3 className={classes.title} style={mediaStyles.title}>
                   {category.title}

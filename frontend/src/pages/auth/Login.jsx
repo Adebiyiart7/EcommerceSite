@@ -1,8 +1,10 @@
 // NODE_MODULES
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Container, TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // LOCAL IMPORTS
 import authStyles from "./authStyles";
@@ -12,18 +14,33 @@ import PageTitle from "../../components/common/PageTitle";
 import Footer from "../../components/footer/Index";
 import NewsLetter from "../../components/NewsLetter";
 import Button from "../../components/common/Button";
+import { login, reset } from "../../features/auth/authSlice";
 
 const useStyles = makeStyles(authStyles());
 
 const Login = () => {
   const classes = useStyles();
+  const { mediaQueries } = useContext(AppContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { email, password } = formData;
-  const { mediaQueries } = useContext(AppContext);
+  const { isLoading, isSuccess, isError, message } = useSelector((state) => state.auth)
 
+  useEffect(() => {
+    if (isError) {
+      console.log(message); // TODO SHOW ALERT
+    }
+    
+    if (isSuccess) {
+      navigate("/") // TODO Navigate to the page where it's been redirected from
+    }
+
+    dispatch(reset());
+  },[isError, isLoading, isSuccess, message, dispatch, navigate])
   const handleOnChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -33,6 +50,12 @@ const Login = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    const userData = {
+      email: email,
+      password: password,
+    }
+
+    dispatch(login(userData));
   };
 
   return (
