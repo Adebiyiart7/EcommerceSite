@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Navigations = ({ media1000Down }) => {
+const Navigations = ({ user, media1000Down }) => {
   const classes = useStyles();
 
   const mediaStyles = {
@@ -34,7 +34,7 @@ const Navigations = ({ media1000Down }) => {
       margin: media1000Down && 0,
     },
   };
-
+  
   return (
     <ul className={classes.navs} style={mediaStyles.navs}>
       <Link to="/" className={classes.navLink} style={mediaStyles.navLink}>
@@ -56,9 +56,15 @@ const Navigations = ({ media1000Down }) => {
       <Link to="/blog" className={classes.navLink} style={mediaStyles.navLink}>
         <li className={classes.nav}>Blog</li>
       </Link>
-            <Link to="/login" className={classes.navLink} style={mediaStyles.navLink}>
-        <li className={classes.nav}>Login</li>
-      </Link>
+      {!user && (
+        <Link
+          to="/login"
+          className={classes.navLink}
+          style={mediaStyles.navLink}
+        >
+          <li className={classes.nav}>Login</li>
+        </Link>
+      )}
     </ul>
   );
 };

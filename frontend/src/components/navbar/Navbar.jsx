@@ -6,6 +6,7 @@ import { makeStyles } from "@mui/styles";
 import { BiHeart } from "react-icons/bi";
 import { MdMenu } from "react-icons/md";
 import { useTheme, useMediaQuery } from "@material-ui/core";
+import { useSelector } from "react-redux";
 
 // LOCAL IMPORTS
 import logo from "../../assets/images/logo.png";
@@ -31,7 +32,7 @@ const useStyles = makeStyles({
     borderTop: "4px solid var(--primaryColor)",
     borderRadius: 4,
     padding: 0,
-    zIndex: "var(--zIndex1)",
+    zIndex: "var(--zIndex2)",
   },
   logo: {
     height: 60,
@@ -66,14 +67,14 @@ const useStyles = makeStyles({
 });
 
 const Navbar = ({ mediaQueries }) => {
+  const theme = useTheme();
+  const classes = useStyles();
   const [showMobileNavs, setShowMobileNavs] = useState(false);
   const [showUserMenuList, setShowUserMenuList] = useState(false);
-  const theme = useTheme();
   const media1000Down = useMediaQuery(theme.breakpoints.down(1000));
   const media650Down = useMediaQuery(theme.breakpoints.down(650));
   const { mediumDown, largeDown } = mediaQueries;
-  const classes = useStyles();
-
+  const { user } = useSelector((state) => state.auth);
   const handleShowMobileNav = () => setShowMobileNavs(!showMobileNavs);
 
   const mediaStyles = {
@@ -87,7 +88,7 @@ const Navbar = ({ mediaQueries }) => {
       display: media1000Down ? "block" : "none",
     },
     menuList: {
-      display: showUserMenuList ? "block" : "none"
+      display: showUserMenuList ? "block" : "none",
     },
     mobileNavs: { display: showMobileNavs ? "block" : "none" },
     navbar: { padding: largeDown && "7px 0" },
@@ -110,7 +111,9 @@ const Navbar = ({ mediaQueries }) => {
         </a>
         <div className={classes.center}>
           {!media650Down && <Category />}
-          {!media1000Down && <Navigations media1000Down={media1000Down} />}
+          {!media1000Down && (
+            <Navigations user={user} media1000Down={media1000Down} />
+          )}
         </div>
         <div className={classes.right}>
           <IoSearch className={classes.rightIcon} />
@@ -120,23 +123,25 @@ const Navbar = ({ mediaQueries }) => {
             style={mediaStyles.menuBar}
             onClick={handleShowMobileNav}
           />
-          <span>
-            <Avatar
-              variant="rounded"
-              onClick={() => setShowUserMenuList(!showUserMenuList)}
-              style={mediaStyles.avatar}
-              src=""
-              sx={{ width: 34, height: 34, bgcolor: "var(--primaryColor)" }}
-            />
-            <ul className={classes.menuList} style={mediaStyles.menuList}>
-              <MenuList />
-            </ul>
-          </span>
+          {(user || media1000Down) && (
+            <span>
+              <Avatar
+                variant="rounded"
+                onClick={() => setShowUserMenuList(!showUserMenuList)}
+                style={mediaStyles.avatar}
+                src=""
+                sx={{ width: 34, height: 34, bgcolor: "var(--primaryColor)" }}
+              />
+              <ul className={classes.menuList} style={mediaStyles.menuList}>
+                <MenuList user={user} />
+              </ul>
+            </span>
+          )}
         </div>
       </div>
       {media1000Down && (
         <div style={mediaStyles.mobileNavs}>
-          <Navigations media1000Down={media1000Down} />
+          <Navigations user={user} media1000Down={media1000Down} />
         </div>
       )}
       {media650Down && <Category />}

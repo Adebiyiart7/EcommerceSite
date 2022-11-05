@@ -50,12 +50,13 @@ const registerUser = asyncHandler(async (req, res) => {
     });
 
     return res.status(201).json({
-      ..._.pick(user, ["fullname", "email"]),
+      ..._.pick(user, ["_id", "fullname", "email"]),
       token: generateToken(user._id),
     });
   } catch (error) {
     console.log(error);
-    res.status(400).send("Error creating user!");
+    res.status(400);
+    throw new Error("Error creating user!");
   }
 });
 

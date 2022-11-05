@@ -33,14 +33,18 @@ const loginUser = asyncHandler(async (req, res) => {
     try {
       return res.status(200).json({
         id: user._id,
+        fullname: user.fullname,
+        email: user.email,
         token: generateToken(user._id),
       });
     } catch (error) {
       console.log(error);
-      res.status(400).send("Error logging user!");
+      res.status(400);
+      throw new Error("Error logging user!");
     }
   } else {
-    res.status(400).send("Invalid Credentials");
+    res.status(400);
+    throw new Error("Invalid Credentials");
   }
 });
 
