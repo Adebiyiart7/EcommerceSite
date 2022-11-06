@@ -10,8 +10,7 @@ const Product = require("../../models/product");
  */
 const getProducts = asyncHandler(async (req, res) => {
   try {
-    // get products TODO: Add query options: sort, pagination. etc
-    const products = await Product.find().select([
+    const products = await Product.find(req.query).select([
       "name",
       "price",
       "category",

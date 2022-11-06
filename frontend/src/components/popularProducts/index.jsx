@@ -39,11 +39,13 @@ const PopularProducts = ({ mediaQueries }) => {
   useEffect(() => {
     if (isError) console.log(message); // TODO SHOW ALERT
 
-    if (isSuccess) dispatch(getProducts());
+    if (isSuccess) {
+      dispatch(getProducts(window.location.search));
+    }
 
     return () => dispatch(reset());
   }, [isError, isSuccess, message, dispatch]);
-
+  console.log(products);
   return (
     <div className={classes.popularProducts}>
       <PageTitle
@@ -53,8 +55,11 @@ const PopularProducts = ({ mediaQueries }) => {
       />
       <Container>
         <Grid container spacing={{ xs: 2 }}>
-          {isLoading ? (
-            // TODO ADD SPINNER
+          {/* TODO Style this text */}
+          {products.length === 0 && <p>No Items To Show</p>}
+
+          {/* TODO Show spinner */}
+          {isLoading ? ( // TODO ADD SPINNER
             <p>Loading...</p>
           ) : (
             products.map((item, index) => (

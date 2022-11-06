@@ -9,7 +9,6 @@ import {
 } from "react-icons/gi";
 import { RiSeedlingFill } from "react-icons/ri";
 import { FaCarrot } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   link: {
@@ -45,42 +44,42 @@ const MenuList = ({ customStyles }) => {
 
   return (
     <>
-      <Link className={classes.link} to="/">
+      <a className={classes.link} href={`/shop?category=cereals`}>
         <li className={classes.list}>
           <MdGrain className={classes.listIcon} />
           Cereals
         </li>
-      </Link>
-      <Link className={classes.link} to="/">
+      </a>
+      <a className={classes.link} href={`/shop?category=fruits`}>
         <li className={classes.list}>
           <GiFruitBowl className={classes.listIcon} /> Fruits
         </li>
-      </Link>
-      <Link className={classes.link} to="/">
+      </a>
+      <a className={classes.link} href={`/shop?category=pulses`}>
         <li className={classes.list}>
           <GiJellyBeans className={classes.listIcon} /> Pulses
         </li>
-      </Link>
-      <Link className={classes.link} to="/">
+      </a>
+      <a className={classes.link} href={`/shop?category=seeds`}>
         <li className={classes.list}>
           <RiSeedlingFill className={classes.listIcon} /> Seeds
         </li>
-      </Link>
-      <Link className={classes.link} to="/">
+      </a>
+      <a className={classes.link} href={`/shop?category=vegetables`}>
         <li className={classes.list}>
           <FaCarrot className={classes.listIcon} /> Vegetables
         </li>
-      </Link>
-      <Link className={classes.link} to="/">
+      </a>
+      <a className={classes.link} href={`/shop?category=spices`}>
         <li className={classes.list}>
           <GiChiliPepper className={classes.listIcon} /> Spices
         </li>
-      </Link>
-      <Link className={classes.link} to="/">
+      </a>
+      <a className={classes.link} href={`/shop?category=fibres`}>
         <li className={classes.list}>
           <GiSugarCane className={classes.listIcon} /> Fibres
         </li>
-      </Link>
+      </a>
     </>
   );
 };

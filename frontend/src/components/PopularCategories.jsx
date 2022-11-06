@@ -30,6 +30,7 @@ const useStyles = makeStyles({
     overflow: "hidden",
   },
   title: {
+    textTransform: "capitalize",
     color: "var(--primaryText)",
     margin: "5px 0 15px 0",
   },
@@ -55,10 +56,10 @@ const PopularCategories = ({ mediaQueries }) => {
         <Grid container className={classes.popularCatogories}>
           {categories.map((category, index) => (
             <Grid key={index} item xs={4} md={2}>
-              <a href={category.link} className={classes.category}>
+              <a href={`/shop?category=${category.name}`} className={classes.category}>
                 <img className={classes.image} src={category.image} alt="" />
                 <h3 className={classes.title} style={mediaStyles.title}>
-                  {category.title}
+                  {category.name}
                 </h3>
               </a>
             </Grid>
@@ -69,41 +70,34 @@ const PopularCategories = ({ mediaQueries }) => {
   );
 };
 
-const categories = [
+export const categories = [
   {
-    title: "Fruits",
+    name: "fruits",
     image: fruits,
-    link: "fruits",
   },
   {
-    title: "Pulses",
     image: pulses,
-    link: "pulses",
+    name: "pulses",
   },
   {
-    title: "Vegetables",
     image: vegetables,
-    link: "vegetables",
+    name: "vegetables",
   },
   {
-    title: "Cereals",
     image: cereals,
-    link: "cereals",
+    name: "cereals",
   },
   {
-    title: "Seeds",
     image: seeds,
-    link: "seeds",
+    name: "seeds",
   },
   {
-    title: "Spices",
     image: spices,
-    link: "spices",
+    name: "spices",
   },
   // {
-  //   title: "Fibres",
   //   image: fibres,
-  //   link: "fibres",
+  //   name: "fibres",
   // },
 ];
 
