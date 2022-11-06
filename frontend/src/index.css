@@ -7,7 +7,8 @@
   --primaryBorder: #ddd;
   --primaryColor: #6ba12a;
   --primaryText: #344056;
-  --secondaryColor: #222222;
+  --secondaryColor: #222;
+  --secondaryText: #333;
   --white: #FFF;
   --yellow: #fbe541;
 
@@ -27,4 +28,9 @@ body {
 
 a {
   color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }

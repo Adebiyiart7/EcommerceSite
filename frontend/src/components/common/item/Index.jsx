@@ -4,6 +4,10 @@ import { makeStyles } from "@mui/styles";
 import { Rating } from "@mui/material";
 import { BiHeart } from "react-icons/bi";
 
+
+// LOCAL IMPORTS
+import TextWithEllipsis from "../../common/TextWithEllipsis";
+
 const useStyles = makeStyles({
   image: {
     width: "100%",
@@ -25,12 +29,14 @@ const useStyles = makeStyles({
     border: "1px solid var(--primaryBorder)",
   },
   price: {
+    color: "var(--secondaryText)",
     fontWeight: 700,
     fontSize: 22,
     margin: "5px 0",
   },
   stars: {},
   title: {
+    color: "var(--secondaryText)",
     marginTop: 0,
   },
   wishListIcon: {
@@ -60,7 +66,8 @@ const Item = ({ action, image, price, stars, title }) => {
         <img className={classes.image} src={image} alt="" />
       </Link>
       <div style={{ padding: 16 }}>
-        <h3 className={classes.title}>{title}</h3>
+        
+        <h3 className={classes.title}><TextWithEllipsis text={title} /></h3>
         <Rating value={stars} readOnly sx={{ color: "var(--primaryColor)" }} />
         <div className={classes.price}>${price}</div>
         <div>{action}</div>

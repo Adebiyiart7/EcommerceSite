@@ -39,6 +39,10 @@ const productSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
+    stars: {
+      type: Number,
+      default: 0,
+    },
     displayImage: {
       type: String,
       required: true,
@@ -50,16 +54,6 @@ const productSchema = mongoose.Schema(
       },
     ],
     active: {
-      type: Boolean,
-      require: true,
-      default: false,
-    },
-    isAdmin: {
-      type: Boolean,
-      require: true,
-      default: false,
-    },
-    isSuperAdmin: {
       type: Boolean,
       require: true,
       default: false,

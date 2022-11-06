@@ -11,7 +11,12 @@ const Product = require("../../models/product");
 const getProducts = asyncHandler(async (req, res) => {
   try {
     // get products TODO: Add query options: sort, pagination. etc
-    const products = await Product.find().select(["name", "price", "category"]);
+    const products = await Product.find().select([
+      "name",
+      "price",
+      "category",
+      "stars",
+    ]);
     return res.status(200).json(products);
   } catch (error) {
     console.log(error);

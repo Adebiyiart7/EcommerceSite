@@ -28,19 +28,22 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { email, password } = formData;
-  const { isLoading, isSuccess, isError, message } = useSelector((state) => state.auth)
+  const { isLoading, isSuccess, isError, message } = useSelector(
+    (state) => state.auth
+  );
 
   useEffect(() => {
     if (isError) {
-      console.log(message); // TODO SHOW ALERT
+      console.log(message) // TODO ADD ALERT
     }
-    
+
     if (isSuccess) {
-      navigate("/") // TODO Navigate to the page where it's been redirected from
+      navigate("/"); // TODO Navigate to the page where it's been redirected from
     }
 
     dispatch(reset());
-  },[isError, isLoading, isSuccess, message, dispatch, navigate])
+  }, [isError, isLoading, isSuccess, message, dispatch, navigate]);
+
   const handleOnChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -53,7 +56,7 @@ const Login = () => {
     const userData = {
       email: email,
       password: password,
-    }
+    };
 
     dispatch(login(userData));
   };
@@ -102,7 +105,12 @@ const Login = () => {
             />
           </div>
           <br />
-          <Button text={"LOGIN"} color="var(--white)" width={"100%"} altButton />
+          <Button
+            text={"LOGIN"}
+            color="var(--white)"
+            width={"100%"}
+            altButton
+          />
           <p className={classes.text}>
             Don't have an account?{" "}
             <Link to="/register">
