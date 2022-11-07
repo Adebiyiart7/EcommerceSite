@@ -16,7 +16,20 @@ export const addToWishlist = createAsyncThunk(
       return data;
     } catch (error) {
       console.log(error);
-      return thunkAPI.rejectWithValue("Error adding item to wish list!");
+      return thunkAPI.rejectWithValue("Error adding item to wishlist!");
+    }
+  }
+);
+
+// REMOVE FROM WISHLIST
+export const removeFromWishlist = createAsyncThunk(
+  "wishlist/remove",
+  (id, thunkAPI) => {
+    try {
+      return id;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue("Error removing item from wishlist!");
     }
   }
 );
@@ -28,10 +41,18 @@ const wishlistSlice = createSlice({
     reset: () => initialState,
   },
   extraReducers: (builder) => {
-    builder.addCase(addToWishlist.fulfilled, (state, action) => {
-      state.isSuccess = true;
-      state.wishlist.push(action.payload);
-    });
+    builder
+      .addCase(addToWishlist.fulfilled, (state, action) => {
+        state.isSuccess = true;
+        state.wishlist.push(action.payload);
+      })
+      .addCase(removeFromWishlist.fulfilled, (state, action) => {
+        state.isSuccess = true;
+        const newList = state.wishlist.filter(
+          (item) => item.id !== action.payload
+        );
+        state.wishlist = newList;
+      });
   },
 });
 
