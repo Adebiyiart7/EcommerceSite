@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { Rating } from "@mui/material";
-import { BiHeart } from "react-icons/bi";
+import { FaRegHeart } from "react-icons/fa";
 
 
 // LOCAL IMPORTS
@@ -56,12 +56,12 @@ const useStyles = makeStyles({
     },
   },
 });
-const Item = ({ action, image, price, stars, title }) => {
+const Item = ({ action, image, price, stars, title, onAddToWishlist }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.itemContainer}>
-      <BiHeart className={classes.wishListIcon} />
+      <FaRegHeart onClick={onAddToWishlist} className={classes.wishListIcon} />
       <Link to="/">
         <img className={classes.image} src={image} alt="" />
       </Link>

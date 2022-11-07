@@ -15,6 +15,7 @@ import { Container } from "@mui/material";
 import Category from "../category";
 import Navigations from "./Navigations";
 import MenuList from "./MenuList";
+import SelectedProducts from "../common/SelectedProducts";
 
 const useStyles = makeStyles({
   center: {
@@ -76,6 +77,8 @@ const Navbar = ({ mediaQueries, color }) => {
   const { user } = useSelector((state) => state.auth);
   const handleShowMobileNav = () => setShowMobileNavs(!showMobileNavs);
 
+  const { wishlist } = useSelector((state) => state.wishlist);
+
   const mediaStyles = {
     avatar: {
       cursor: "pointer",
@@ -101,6 +104,7 @@ const Navbar = ({ mediaQueries, color }) => {
 
   return (
     <Container>
+      <SelectedProducts header={"Wishlist"}  items={wishlist} />
       <div className={classes.navbar} style={mediaStyles.navbar}>
         <a href="/" className={classes.logoContainer}>
           {mediumDown ? (

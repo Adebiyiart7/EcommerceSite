@@ -10,6 +10,7 @@ import carrots from "../../assets/images/carrots.jpg";
 import Button from "../common/Button";
 import { useEffect } from "react";
 import { getProducts, reset } from "../../features/products/productsSlice";
+import { addToWishlist } from "../../features/wishlist/wishlistSlice";
 
 const useStyles = makeStyles({
   popularProducts: {
@@ -32,10 +33,16 @@ export const ItemButton = () => {
 const PopularProducts = ({ mediaQueries }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  // Get product state
   const { isLoading, isError, isSuccess, products, message } = useSelector(
     (state) => state.products
   );
-
+  // Get wishlist state
+  const { isSuccess: wishlistIsSuccess, wishlist } = useSelector(
+    (state) => state.wishlist
+  );
+  // Fetch product data
   useEffect(() => {
     if (isError) console.log(message); // TODO SHOW ALERT
 
@@ -45,7 +52,30 @@ const PopularProducts = ({ mediaQueries }) => {
 
     return () => dispatch(reset());
   }, [isError, isSuccess, message, dispatch]);
-  console.log(products);
+
+  // store wishlist from redux store to localstorage
+  useEffect(() => {
+    if (wishlistIsSuccess) {
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    }
+  }, [wishlistIsSuccess, wishlist]);
+
+  // add product to redux store
+  const handleAddToWishlist = (data) => {
+    // get wishlist from localstorage
+    const wishlist = JSON.parse(localStorage.getItem("wishlist"));
+    if (wishlist) {
+      // check if data already exist
+      const dataExists = wishlist.filter((item) => item.id === data.id);
+      // add data if it does not exist in the localstorage
+      if (dataExists.length === 0) {
+        dispatch(addToWishlist(data));
+      }
+    } else {
+      dispatch(addToWishlist(data));
+    }
+  };
+
   return (
     <div className={classes.popularProducts}>
       <PageTitle
@@ -70,6 +100,14 @@ const PopularProducts = ({ mediaQueries }) => {
                   price={item.price}
                   stars={item.stars}
                   title={item.name}
+                  onAddToWishlist={() => {
+                    handleAddToWishlist({
+                      id: item._id,
+                      name: item.name,
+                      price: item.price,
+                      image: carrots
+                    });
+                  }}
                 />
               </Grid>
             ))
