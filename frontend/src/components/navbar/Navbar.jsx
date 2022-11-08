@@ -15,60 +15,12 @@ import { Container } from "@mui/material";
 import Category from "../category";
 import Navigations from "./Navigations";
 import MenuList from "./MenuList";
-import SelectedProducts from "../common/SelectedProducts";
-import {
-  removeFromWishlist,
-  reset,
-} from "../../features/wishlist/wishlistSlice";
+import Wishlist from "./Wishlist";
+import { removeFromWishlist } from "../../features/wishlist/wishlistSlice";
+import Cart from "./Cart";
+import { classStyles, inlineStyles as styles } from "./navbarStyles";
 
-const useStyles = makeStyles({
-  center: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  menuList: {
-    position: "absolute",
-    top: "40px",
-    right: 0,
-    width: 198,
-    border: "1px solid var(--primaryBorder)",
-    borderTop: "4px solid var(--primaryColor)",
-    borderRadius: 4,
-    padding: 0,
-    zIndex: "var(--zIndex2)",
-  },
-  logo: {
-    height: 60,
-  },
-  navbar: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "10px 0",
-  },
-  right: {
-    position: "relative",
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  rightIcon: {
-    padding: 7,
-    border: "1px solid var(--primaryBorder)",
-    borderRadius: 4,
-    fontSize: 18,
-    cursor: "pointer",
-    marginRight: 10,
-    "&:hover": {
-      backgroundColor: "var(--primaryColor)",
-      borderColor: "var(--primaryColor)",
-      color: "var(--white)",
-    },
-  },
-});
+const useStyles = makeStyles(classStyles());
 
 const Navbar = ({ mediaQueries, color }) => {
   const theme = useTheme();
@@ -77,6 +29,7 @@ const Navbar = ({ mediaQueries, color }) => {
   const [showMobileNavs, setShowMobileNavs] = useState(false);
   const [showUserMenuList, setShowUserMenuList] = useState(false);
   const [showWishlist, setShowWishlist] = useState(false);
+  const [showCart, setShowCart] = useState(false);
   const media1000Down = useMediaQuery(theme.breakpoints.down(1000));
   const media650Down = useMediaQuery(theme.breakpoints.down(650));
   const { mediumDown, largeDown } = mediaQueries;
@@ -85,57 +38,45 @@ const Navbar = ({ mediaQueries, color }) => {
 
   const { wishlist } = useSelector((state) => state.wishlist);
 
-  const inlineStyles = {
-    avatar: {
-      cursor: "pointer",
-    },
-    logo: {
-      height: largeDown && 55,
-    },
-    menuBar: {
-      display: media1000Down ? "block" : "none",
-    },
-    menuList: {
-      display: showUserMenuList ? "block" : "none",
-    },
-    mobileNavs: {
-      color: color ? color : "var(--primaryText)",
-      display: showMobileNavs ? "block" : "none",
-    },
-    navbar: {
-      color: color ? color : "var(--primaryText)",
-      padding: largeDown && "7px 0",
-    },
-    wishlistContainer: {
-      zIndex: "var(--zIndex2)",
-      color: "var(--secondaryText)",
-      fontFamily: "'Roboto', serif",
-      position: "fixed",
-      top: 0,
-      left: showWishlist ? 0 : -350,
-      transition: ".3s",
-      width: "100%",
-      maxWidth: 320,
-    },
-  };
+  const inlineStyles = styles(
+    largeDown,
+    media1000Down,
+    showUserMenuList,
+    showMobileNavs,
+    showWishlist,
+    showCart,
+    color
+  );
 
   // remove item from wishlist
   const handleRemove = (id) => {
     dispatch(removeFromWishlist(id));
-    dispatch(reset());
   };
 
   // show or hide wishlist
   const handleShowWishlist = () => setShowWishlist(!showWishlist);
 
+  // show or hide cart
+  const handleShowCart = () => setShowCart(!showCart);
+
+  const cart = [];
+
   return (
     <Container>
       <div style={inlineStyles.wishlistContainer}>
-        <SelectedProducts
+        <Wishlist
           header={"Wishlist"}
           items={wishlist}
           onRemove={(id) => handleRemove(id)}
           onClose={handleShowWishlist}
+        />
+      </div>
+      <div style={inlineStyles.cartContainer}>
+        <Cart
+          header={"Cart"}
+          items={cart}
+          onRemove={(id) => handleRemove(id)}
+          onClose={handleShowCart}
         />
       </div>
       <div className={classes.navbar} style={inlineStyles.navbar}>
@@ -159,7 +100,13 @@ const Navbar = ({ mediaQueries, color }) => {
         </div>
         <div className={classes.right}>
           <IoSearch className={classes.rightIcon} />
-          <BiHeart onClick={handleShowWishlist} className={classes.rightIcon} />
+          <span className={classes.wishlist}>
+            <span className={classes.badge}>{wishlist.length}</span>
+            <BiHeart // TODO if cart is empty display an alert
+              onClick={handleShowWishlist}
+              className={classes.rightIcon}
+            />
+          </span>
           <MdMenu
             className={classes.rightIcon}
             style={inlineStyles.menuBar}

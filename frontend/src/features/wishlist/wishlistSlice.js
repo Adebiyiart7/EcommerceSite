@@ -51,6 +51,7 @@ const wishlistSlice = createSlice({
         const newList = state.wishlist.filter(
           (item) => item.id !== action.payload
         );
+        console.log(action.payload);
         state.wishlist = newList;
       });
   },
