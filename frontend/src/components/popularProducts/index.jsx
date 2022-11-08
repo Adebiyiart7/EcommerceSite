@@ -111,7 +111,7 @@ const PopularProducts = ({ mediaQueries }) => {
           {isLoading ? ( // TODO ADD SPINNER
             <p>Loading...</p>
           ) : (
-            products.map((item, index) => (
+            products.slice(0, 8).map((item, index) => (
               <Grid key={index} item xs={12} sm={6} md={3}>
                 <Item
                   action={
