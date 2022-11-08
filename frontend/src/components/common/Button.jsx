@@ -26,10 +26,19 @@ const useStyles = makeStyles({
       color: "var(--primaryText)",
       borderColor: "var(--primaryBorder)",
     },
-  }
+  },
 });
 
-const Button = ({ startIcon, text, endIcon, onClick, width,height, altButton, color }) => {
+const Button = ({
+  startIcon,
+  text,
+  endIcon,
+  onClick,
+  width,
+  height,
+  altButton,
+  color,
+}) => {
   const classes = useStyles();
   const categoriesIcon = {
     position: "relative",
@@ -43,10 +52,10 @@ const Button = ({ startIcon, text, endIcon, onClick, width,height, altButton, co
       fontSize: 16,
       padding: "10px 20px",
       fontFamily: "'Roboto', serif",
-      marginRight: 20,
+      // marginRight: 20,
       width: width,
       height: height,
-      color: color || "var(--primaryText)",
+      color: color,
     },
     startIcon: {
       ...categoriesIcon,
