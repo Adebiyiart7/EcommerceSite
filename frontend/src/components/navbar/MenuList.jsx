@@ -34,6 +34,7 @@ const useStyles = makeStyles({
     },
   },
   list: {
+    cursor: "pointer",
     listStyle: "none",
   },
   listIcon: {
