@@ -148,7 +148,7 @@ const Register = () => {
             />
           </div>
           <br />
-          <Button text={"REGISTER"} color="var(--white)"  width={"100%"} altButton />
+          <Button text={"REGISTER"}  width={"100%"} altButton />
           <p className={classes.text}>
             Already have an account?{" "}
             <Link to="/login">

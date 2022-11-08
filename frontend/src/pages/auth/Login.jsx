@@ -107,7 +107,6 @@ const Login = () => {
           <br />
           <Button
             text={"LOGIN"}
-            color="var(--white)"
             width={"100%"}
             altButton
           />
