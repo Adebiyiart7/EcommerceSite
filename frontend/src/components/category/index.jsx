@@ -42,11 +42,8 @@ const Category = () => {
   return (
     <div style={{ position: "relative", zIndex: "var(--zIndex1)" }}>
       <Button
-        color={
-          window.location.pathname === "/"
-            ? "var(--white)"
-            : "var(--primaryText)"
-        }
+        color={window.location.pathname === "/" && "var(--white)"}
+        altButton
         width={"100%"}
         startIcon={<BiCategory />}
         endIcon={<IoChevronDown />}

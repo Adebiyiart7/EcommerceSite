@@ -19,6 +19,7 @@ import Wishlist from "./Wishlist";
 import { removeFromWishlist } from "../../features/wishlist/wishlistSlice";
 import Cart from "./Cart";
 import { classStyles, inlineStyles as styles } from "./navbarStyles";
+import { removeFromCart, updateItemQuantity } from "../../features/cart/cartSlice";
 
 const useStyles = makeStyles(classStyles());
 
@@ -37,8 +38,10 @@ const Navbar = ({ mediaQueries, color }) => {
   const handleShowMobileNav = () => setShowMobileNavs(!showMobileNavs);
 
   const { wishlist } = useSelector((state) => state.wishlist);
+  const { cart } = useSelector((state) => state.cart);
 
   const inlineStyles = styles(
+    mediumDown,
     largeDown,
     media1000Down,
     showUserMenuList,
@@ -49,8 +52,18 @@ const Navbar = ({ mediaQueries, color }) => {
   );
 
   // remove item from wishlist
-  const handleRemove = (id) => {
+  const handleRemoveFromWishlist = (id) => {
     dispatch(removeFromWishlist(id));
+  };
+
+  // remove item from cart
+  const handleRemoveFromCart = (id) => {
+    dispatch(removeFromCart(id));
+  };
+
+  // update item qantity in cart
+  const handleUpdateQuantity = (id, action) => {
+    dispatch(updateItemQuantity({id: id, action: action}));
   };
 
   // show or hide wishlist
@@ -59,24 +72,25 @@ const Navbar = ({ mediaQueries, color }) => {
   // show or hide cart
   const handleShowCart = () => setShowCart(!showCart);
 
-  const cart = [];
-
   return (
     <Container>
       <div style={inlineStyles.wishlistContainer}>
         <Wishlist
           header={"Wishlist"}
           items={wishlist}
-          onRemove={(id) => handleRemove(id)}
-          onClose={handleShowWishlist}
+          showCart={showCart}
+          onRemove={(id) => handleRemoveFromWishlist(id)}
+          onToggleShowWishlist={handleShowWishlist}
         />
       </div>
       <div style={inlineStyles.cartContainer}>
         <Cart
           header={"Cart"}
           items={cart}
-          onRemove={(id) => handleRemove(id)}
-          onClose={handleShowCart}
+          showWishlist={showWishlist}
+          onRemove={(id) => handleRemoveFromCart(id)}
+          onUpdateQuantity={(id, action) => handleUpdateQuantity(id, action)}
+          onToggleShowCart={handleShowCart}
         />
       </div>
       <div className={classes.navbar} style={inlineStyles.navbar}>

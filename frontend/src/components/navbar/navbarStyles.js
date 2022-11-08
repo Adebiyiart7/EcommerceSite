@@ -1,17 +1,23 @@
+export const badgeStyles = {
+  position: "absolute",
+  top: -10,
+  minWidth: 12,
+  height: 12,
+  lineHeight: 1,
+  textAlign: "center",
+  fontSize: 14,
+  padding: 5,
+  borderRadius: "50%",
+  color: "var(--white)",
+  fontFamily: "'Roboto', serif",
+  backgroundColor: "var(--primaryColor)",
+};
+
 export const classStyles = () => {
   return {
     badge: {
-      position: "absolute",
-      top: -10,
       right: 3,
-      minWidth: 12,
-      height: 12,
-      lineHeight: 1,
-      textAlign: "center",
-      fontSize: 14,
-      padding: 5,
-      borderRadius: "50%",
-      backgroundColor: "var(--primaryColor)",
+      ...badgeStyles,
     },
     center: {
       display: "flex",
@@ -61,11 +67,13 @@ export const classStyles = () => {
     },
     wishlist: {
       position: "relative",
+      lineHeight: 0,
     },
   };
 };
 
 export const inlineStyles = (
+  mediumDown,
   largeDown,
   media1000Down,
   showUserMenuList,
@@ -82,7 +90,7 @@ export const inlineStyles = (
     top: 0,
     transition: ".3s",
     width: "100%",
-    maxWidth: 300,
+    maxWidth: mediumDown ? 280 : 300,
   };
 
   return {
@@ -108,25 +116,37 @@ export const inlineStyles = (
     },
     wishlistContainer: {
       ...selectedProductsContainer,
-      left: showWishlist ? 0 : -300,
+      left: showWishlist ? 0 : mediumDown ? -280 : -300,
     },
     cartContainer: {
       ...selectedProductsContainer,
-      left: showCart ? 0 : -300,
+      left: showCart ? 0 : mediumDown ? -280 : -300,
     },
   };
 };
 
 export const cartStyles = () => {
   return {
+    badge: {
+      right: -10,
+      ...badgeStyles,
+    },
+    close: {
+      position: "absolute !important",
+      right: "-41px",
+      border: "1px solid var(--primaryBorder) !important",
+      borderRadius: "0 !important",
+      backgroundColor: "var(--white) !important",
+      color: "var(--primaryColor) !important",
+    },
     header: {
       fontSize: 14,
       padding: "10px 16px",
       borderBottom: "1px solid var(--primaryBorder)",
     },
     image: {
-      width: 80,
-      height: 80,
+      width: 85,
+      height: 85,
       marginRight: 10,
       borderRadius: 10,
       objectFit: "cover",
@@ -135,28 +155,39 @@ export const cartStyles = () => {
     item: {
       display: "flex",
       alignItems: "center",
-      marginBottom: 16,
+      padding: "10px 16px",
+      borderBottom: "1px solid var(--secondaryBorder)",
     },
     itemFooter: {
       display: "flex",
       justifyContent: "space-between",
+      marginTop: 5,
+      alignItems: "center",
     },
     items: {
       overflowY: "scroll",
-      padding: 16,
-      height: "calc(100vh - 70px)",
+      height: "calc(100vh - 120px)",
       "&::-webkit-scrollbar": {
         width: "0",
       },
     },
     name: {
-      fontWeight: 600,
-      color: "var(--secondaryText)",
+      fontWeight: 500,
+      marginBottom: 5,
+      fontSize: 15,
+      color: "var(--primaryText)",
     },
     price: {
       color: "var(--primaryColor)",
       fontWeight: 600,
       marginTop: 5,
+    },
+    proceedButton: {
+      display: "block",
+      margin: "5px 0",
+    },
+    quantity: {
+      color: "var(--primaryText)",
     },
     totalAmount: {
       display: "flex",

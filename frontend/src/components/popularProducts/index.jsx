@@ -11,6 +11,7 @@ import Button from "../common/Button";
 import { useEffect } from "react";
 import { getProducts, reset } from "../../features/products/productsSlice";
 import { addToWishlist } from "../../features/wishlist/wishlistSlice";
+import { addTocart } from "../../features/cart/cartSlice";
 
 const useStyles = makeStyles({
   popularProducts: {
@@ -18,17 +19,9 @@ const useStyles = makeStyles({
   },
 });
 
-export const ItemButton = () => {
-  const customStyles = {
-    button: {
-      textTransform: "uppercase",
-      borderRadius: 0,
-      padding: "10px 20px",
-    },
-  };
-
-  return <Button text="Add to Cart" customStyles={customStyles} />;
-};
+export const ItemButton = ({ onAddToCart }) => (
+  <Button onClick={onAddToCart} altButton text="Add to Cart" />
+);
 
 const PopularProducts = ({ mediaQueries }) => {
   const classes = useStyles();
@@ -42,6 +35,9 @@ const PopularProducts = ({ mediaQueries }) => {
   const { isSuccess: wishlistIsSuccess, wishlist } = useSelector(
     (state) => state.wishlist
   );
+  // Get cart state
+  const { isSuccess: cartIsSuccess, cart } = useSelector((state) => state.cart);
+
   // Fetch product data
   useEffect(() => {
     if (isError) console.log(message); // TODO SHOW ALERT
@@ -60,6 +56,13 @@ const PopularProducts = ({ mediaQueries }) => {
     }
   }, [wishlistIsSuccess, wishlist]);
 
+  // store cart from redux store to localstorage
+  useEffect(() => {
+    if (cartIsSuccess) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cartIsSuccess, cart]);
+
   // add product to redux store
   const handleAddToWishlist = (data) => {
     // get wishlist from localstorage
@@ -73,6 +76,22 @@ const PopularProducts = ({ mediaQueries }) => {
       }
     } else {
       dispatch(addToWishlist(data));
+    }
+  };
+
+  // add product to redux store
+  const handleAddToCart = (data) => {
+    // get cart from localstorage
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    if (cart) {
+      // check if data already exist
+      const dataExists = cart.filter((item) => item.id === data.id);
+      // add data if it does not exist in the localstorage
+      if (dataExists.length === 0) {
+        dispatch(addTocart(data));
+      }
+    } else {
+      dispatch(addTocart(data));
     }
   };
 
@@ -95,7 +114,19 @@ const PopularProducts = ({ mediaQueries }) => {
             products.map((item, index) => (
               <Grid key={index} item xs={12} sm={6} md={3}>
                 <Item
-                  action={<ItemButton />}
+                  action={
+                    <ItemButton
+                      onAddToCart={() =>
+                        handleAddToCart({
+                          id: item._id,
+                          name: item.name,
+                          price: item.price,
+                          image: carrots,
+                          quantity: 1,
+                        })
+                      }
+                    />
+                  }
                   image={carrots}
                   price={item.price}
                   stars={item.stars}
@@ -105,7 +136,7 @@ const PopularProducts = ({ mediaQueries }) => {
                       id: item._id,
                       name: item.name,
                       price: item.price,
-                      image: carrots
+                      image: carrots,
                     });
                   }}
                 />

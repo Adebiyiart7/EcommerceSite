@@ -9,19 +9,15 @@ import { Link } from "react-router-dom";
 import pluralize from "../../utils/pluralize";
 import { cartStyles } from "./navbarStyles";
 
-const useStyles = makeStyles({
-  close: {
-    position: "absolute !important",
-    top: "40vh",
-    right: "-35px",
-    borderRadius: "0 !important",
-    backgroundColor: "var(--white) !important",
-    color: "var(--primaryRed) !important",
-  },
-  ...cartStyles()
-});
+const useStyles = makeStyles(cartStyles());
 
-const Wishlist = ({ items, header, onRemove, onClose }) => {
+const Wishlist = ({
+  items,
+  header,
+  onRemove,
+  showCart,
+  onToggleShowWishlist,
+}) => {
   const classes = useStyles();
 
   const totalAmount = () => {
@@ -44,14 +40,26 @@ const Wishlist = ({ items, header, onRemove, onClose }) => {
       <div className={classes.header}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span>
-            <strong>{items.length}</strong> in {pluralize(header, items.length)}
+            <strong>{items.length}</strong> {pluralize("Item", items.length)} in
+            Wishlist.
           </span>
           <span>{header} Total:</span>
         </div>
         <strong className={classes.totalAmount}>${totalAmount()}</strong>
-        <IconButton className={classes.close} onClick={onClose}>
-          <BiHeart />
-        </IconButton>
+        {!showCart && (
+          <IconButton
+            className={classes.close}
+            sx={{ top: "40vh" }}
+            onClick={onToggleShowWishlist}
+          >
+              <span style={{lineHeight: 0}}>
+              {items.length > 0 && (
+                <span className={classes.badge}>{items.length}</span>
+              )}
+              <BiHeart />
+            </span>
+          </IconButton>
+        )}
       </div>
       {items.length < 1 ? (
         <p style={{ textAlign: "center" }}>Your {header} is Empty!</p>
@@ -59,13 +67,17 @@ const Wishlist = ({ items, header, onRemove, onClose }) => {
         <div className={classes.items}>
           {items.map((item, index) => (
             // TODO change the div below to a link that will lead to the item detail
-            <Link to="/" className={classes.item} key={index}>
-              <img className={classes.image} src={item.image} alt="" />
+            <div className={classes.item} key={index}>
+              <Link to="/detail">
+                <img className={classes.image} src={item.image} alt="" />
+              </Link>
               <div style={{ width: "100%" }}>
-                <div className={classes.name}>
-                  {item.name.slice(0, 50)}
-                  {item.name.length > 50 && "..."}
-                </div>
+                <Link to="/detail">
+                  <div className={classes.name}>
+                    {item.name.slice(0, 50)}
+                    {item.name.length > 50 && "..."}
+                  </div>
+                </Link>
                 <div className={classes.itemFooter}>
                   <span className={classes.price}>${item.price}</span>
                   <IconButton size="small" onClick={() => onRemove(item.id)}>
@@ -73,7 +85,7 @@ const Wishlist = ({ items, header, onRemove, onClose }) => {
                   </IconButton>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       )}
