@@ -18,6 +18,7 @@ import Shop from "./pages/shop/Shop";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Checkout from "./pages/checkout";
+import Payment from "./pages/payment";
 
 export const AppContext = createContext();
 
@@ -63,6 +64,10 @@ function App() {
           <Route
             path="/checkout"
             element={<PrivateElement element={<Checkout />} />}
+          />
+          <Route
+            path="/payment"
+            element={<PrivateElement element={<Payment />} />}
           />
         </Routes>
       </Router>

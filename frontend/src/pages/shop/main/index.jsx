@@ -1,4 +1,5 @@
 // NODE_MODULES
+import { useEffect } from "react";
 import { Grid } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -10,8 +11,11 @@ import shopAd2 from "../../../assets/images/shopAd2.jpg";
 import Item from "../../../components/common/item/Index";
 import { ItemButton } from "../../../components/popularProducts";
 import shopOranges from "../../../assets/images/shopOranges.jpg";
-import { useEffect } from "react";
 import { getProducts, reset } from "../../../features/products/productsSlice";
+import { addToCart } from "../../../features/cart/cartSlice";
+import handleAddToCart from "../../../utils/handleAddToCart";
+import handleAddToWishlist from "../../../utils/handleAddToWishlist";
+import { addToWishlist } from "../../../features/wishlist/wishlistSlice";
 
 const slides = [{ image: shopAd0 }, { image: shopAd1 }, { image: shopAd2 }];
 
@@ -51,13 +55,41 @@ const Main = ({ mediaQueries }) => {
             <p>Loading...</p>
           ) : (
             products.map((item, index) => (
-              <Grid item xs={12} sm={6} md={4}>
+              <Grid key={index} item xs={12} sm={6} md={4}>
                 <Item
-                  action={<ItemButton />}
+                  action={
+                    <ItemButton
+                      onAddToCart={() =>
+                        handleAddToCart(
+                          {
+                            id: item._id,
+                            name: item.name,
+                            price: item.price,
+                            image: shopOranges,
+                            quantity: 1,
+                          },
+                          dispatch,
+                          addToCart
+                        )
+                      }
+                    />
+                  }
                   image={shopOranges}
                   price={item.price}
                   stars={item.stars}
                   title={item.name}
+                  onAddToWishlist={() => {
+                    handleAddToWishlist(
+                      {
+                        id: item._id,
+                        name: item.name,
+                        price: item.price,
+                        image: shopOranges,
+                      },
+                      dispatch,
+                      addToWishlist
+                    );
+                  }}
                 />
               </Grid>
             ))

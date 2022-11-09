@@ -38,6 +38,7 @@ const Button = ({
   altButton,
   color,
   small,
+  backgroundColor
 }) => {
   const classes = useStyles();
   const buttonIcon = {
@@ -51,10 +52,11 @@ const Button = ({
       fontWeight: 700,
       fontSize: small ? 14 : 16,
       fontFamily: "'Roboto', serif",
-      padding: small ? "4px 8px" : "10px 20px",
+      padding: small ? "4px 10px" : "10px 20px",
       width: width,
       height: height,
       color: color,
+      backgroundColor: `${backgroundColor} !important`,
     },
     startIcon: {
       ...buttonIcon,

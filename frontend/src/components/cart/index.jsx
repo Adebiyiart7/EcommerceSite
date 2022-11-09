@@ -2,17 +2,20 @@
 import { IconButton } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 // LOCAL IMPORT
 import pluralize from "../../utils/pluralize";
-import Button from "../common/Button";
+import AppButton from "../common/Button";
 import Items from "./Items";
 import { cartStyles } from "./styles";
+import { reset } from "../../features/cart/cartSlice";
 
 export const useStyles = makeStyles(cartStyles());
 
 const Cart = ({ items, header, showWishlist, onToggleShowCart }) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   const totalAmount = () => {
@@ -29,6 +32,11 @@ const Cart = ({ items, header, showWishlist, onToggleShowCart }) => {
       count += item.quantity;
     }
     return count;
+  };
+
+  const clearCart = () => {
+    localStorage.removeItem("cart"); // remove item from localstorage
+    dispatch(reset()); // reset cart
   };
 
   return (
@@ -49,9 +57,14 @@ const Cart = ({ items, header, showWishlist, onToggleShowCart }) => {
         </div>
         <strong className={classes.totalAmount}>${totalAmount()}</strong>
         {items.length > 0 && (
-          <Link to="/checkout" className={classes.proceedButton}>
-            <Button text={"PROCEED TO CHECKOUT"} width="100%" altButton />
-          </Link>
+          <div className={classes.topButton}>
+            <Link to="/checkout" className={classes.checkoutButton}>
+              <AppButton text={"CHECKOUT"} altButton width={"100%"} />
+            </Link>
+            <button className={classes.clearButton} onClick={() => clearCart()}>
+              CLEAR
+            </button>
+          </div>
         )}
         {!showWishlist && (
           <IconButton

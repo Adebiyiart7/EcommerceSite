@@ -45,13 +45,15 @@ const wishlistSlice = createSlice({
       .addCase(addToWishlist.fulfilled, (state, action) => {
         state.isSuccess = true;
         state.wishlist.push(action.payload);
+
+        // add items to localstorage
+        localStorage.setItem("wishlist", JSON.stringify(state.wishlist));
       })
       .addCase(removeFromWishlist.fulfilled, (state, action) => {
         state.isSuccess = true;
         const newList = state.wishlist.filter(
           (item) => item.id !== action.payload
         );
-        console.log(action.payload);
         state.wishlist = newList;
       });
   },

@@ -55,6 +55,9 @@ const cartSlice = createSlice({
       .addCase(addToCart.fulfilled, (state, action) => {
         state.isSuccess = true;
         state.cart.push(action.payload);
+
+        // save items to localstorage
+        localStorage.setItem("cart", JSON.stringify(state.cart));
       })
       .addCase(removeFromCart.fulfilled, (state, action) => {
         state.isSuccess = true;

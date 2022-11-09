@@ -1,3 +1,4 @@
+import { colors } from "@mui/material";
 import { badgeStyles } from "../navbar/navbarStyles";
 
 export const cartStyles = () => {
@@ -5,6 +6,28 @@ export const cartStyles = () => {
     badge: {
       right: -10,
       ...badgeStyles,
+    },
+    checkoutButton: {
+      display: "block",
+      margin: "5px 0",
+      flex: 1,
+    },
+    clearButton: {
+      display: "block",
+      margin: "5px 0 0 10px",
+      height: 41,
+      fontWeight: 700,
+      fontSize: 16,
+      fontFamily: "'Roboto', serif",
+      padding: "10px 20px",
+      color: "var(--white)",
+      border: `1px solid ${colors.red[700]}`,
+      backgroundColor: colors.red[700],
+      borderRadius: 4,
+      cursor: "pointer",
+      "&:hover": {
+        opacity: "90%",
+      },
     },
     close: {
       position: "absolute !important",
@@ -58,12 +81,11 @@ export const cartStyles = () => {
       fontWeight: 600,
       marginTop: 5,
     },
-    proceedButton: {
-      display: "block",
-      margin: "5px 0",
-    },
     quantity: {
       color: "var(--primaryText)",
+    },
+    topButton: {
+      display: "flex",
     },
     totalAmount: {
       display: "flex",
