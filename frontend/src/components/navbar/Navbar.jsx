@@ -18,7 +18,6 @@ import MenuList from "./MenuList";
 import Wishlist from "../wishlist/Wishlist";
 import { removeFromWishlist } from "../../features/wishlist/wishlistSlice";
 import { classStyles, inlineStyles as styles } from "./navbarStyles";
-import { removeFromCart, updateItemQuantity } from "../../features/cart/cartSlice";
 import Cart from "../cart";
 
 const useStyles = makeStyles(classStyles());
@@ -56,16 +55,6 @@ const Navbar = ({ mediaQueries, color }) => {
     dispatch(removeFromWishlist(id));
   };
 
-  // remove item from cart
-  const handleRemoveFromCart = (id) => {
-    dispatch(removeFromCart(id));
-  };
-
-  // update item qantity in cart
-  const handleUpdateQuantity = (id, action) => {
-    dispatch(updateItemQuantity({id: id, action: action}));
-  };
-
   // show or hide wishlist
   const handleShowWishlist = () => setShowWishlist(!showWishlist);
 
@@ -88,8 +77,6 @@ const Navbar = ({ mediaQueries, color }) => {
           header={"Cart"}
           items={cart}
           showWishlist={showWishlist}
-          onRemove={(id) => handleRemoveFromCart(id)}
-          onUpdateQuantity={(id, action) => handleUpdateQuantity(id, action)}
           onToggleShowCart={handleShowCart}
         />
       </div>

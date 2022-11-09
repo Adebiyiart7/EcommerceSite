@@ -74,6 +74,9 @@ const cartSlice = createSlice({
           item.quantity--;
         }
         state.cart = cart;
+
+        // save updated items to localstorage
+        localStorage.setItem("cart", JSON.stringify(cart));
       });
   },
 });

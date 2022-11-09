@@ -31,10 +31,7 @@ const Checkout = () => {
           padding: "25px 0",
         }}
       >
-        <PageTitle
-          title={"Checkout"}
-          mediaQueries={mediaQueries}
-        />
+        <PageTitle title={"Checkout"} mediaQueries={mediaQueries} />
         <Container style={inlineStyles.shopContainer}>
           <Main mediaQueries={mediaQueries} />
           <Aside mediaQueries={mediaQueries} />
