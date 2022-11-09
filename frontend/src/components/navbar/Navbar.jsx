@@ -15,11 +15,11 @@ import { Container } from "@mui/material";
 import Category from "../category";
 import Navigations from "./Navigations";
 import MenuList from "./MenuList";
-import Wishlist from "./Wishlist";
+import Wishlist from "../wishlist/Wishlist";
 import { removeFromWishlist } from "../../features/wishlist/wishlistSlice";
-import Cart from "./Cart";
 import { classStyles, inlineStyles as styles } from "./navbarStyles";
 import { removeFromCart, updateItemQuantity } from "../../features/cart/cartSlice";
+import Cart from "../cart";
 
 const useStyles = makeStyles(classStyles());
 

@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 
 // LOCAL IMPORT
 import pluralize from "../../utils/pluralize";
+import { cartStyles } from "../cart/styles";
 import TextWithNumOfLines from "../common/TextWithNumOfLines";
-import { cartStyles } from "./navbarStyles";
 
 const useStyles = makeStyles(cartStyles());
 

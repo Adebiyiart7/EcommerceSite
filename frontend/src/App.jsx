@@ -11,6 +11,7 @@ import Blog from "./pages/blog/Blog";
 import Shop from "./pages/shop/Shop";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
+import Checkout from "./pages/checkout";
 
 export const AppContext = createContext();
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </Router>
     </AppContext.Provider>

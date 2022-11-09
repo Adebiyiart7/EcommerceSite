@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     "&:hover": {
       border: "1px solid var(--primaryColor)",
     },
-    border: "1px solid var(--primaryBorder)",
+    // border: "1px solid var(--primaryBorder)",
   },
   price: {
     color: "var(--secondaryText)",
