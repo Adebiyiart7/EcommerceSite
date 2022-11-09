@@ -2,7 +2,9 @@
 import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { Rating } from "@mui/material";
-import { BiHeart } from "react-icons/bi";
+
+// LOCAL IMPORTS 
+import TextWithNumOfLines from "../TextWithNumOfLines";
 
 const useStyles = makeStyles({
   actions: {
@@ -10,15 +12,14 @@ const useStyles = makeStyles({
     marginTop: 5,
   },
   discount: {
-    fontWeight: 700,
-    fontSize: 20,
+    fontSize: 18,
     opacity: "50%",
     margin: "5px 0",
-    marginRight: 10,
   },
   image: {
-    width: "100%",
-    maxWidth: 120,
+    width: 120,
+    height: "100%",
+    objectFit: "cover",
   },
   itemContainer: {
     position: "relative",
@@ -26,9 +27,10 @@ const useStyles = makeStyles({
     flexDirection: "row",
     borderRadius: 7,
     textDecoration: "none",
-    padding: 16,
+    padding: "16px 10px",
     margin: "auto",
     height: 120,
+    fontFamily: "'Roboto', serif",
     border: "1px solid var(--white)",
     backgroundColor: "var(--white)",
     "&:hover": {
@@ -37,8 +39,9 @@ const useStyles = makeStyles({
   },
   price: {
     fontWeight: 700,
-    fontSize: 20,
-    margin: "5px 0",
+    fontSize: 18,
+    margin: "5px 10px 0 0",
+    color: "var(--primaryColor)",
   },
   right: {
     display: "flex",
@@ -52,6 +55,7 @@ const useStyles = makeStyles({
   title: {
     margin: 0,
     fontSize: 16,
+    color: "var(--secondaryText)",
   },
   wishListIcon: {
     padding: 6,
@@ -68,23 +72,8 @@ const useStyles = makeStyles({
   },
 });
 
-const Item = ({
-  action,
-  discount,
-  image,
-  price,
-  stars,
-  title,
-  mediaQueries,
-}) => {
-  const { laptopUp } = mediaQueries;
+const Item = ({ action, image, price, stars, title, mediaQueries }) => {
   const classes = useStyles();
-
-  const mediaStyles = {
-    wishListIcon: {
-      fontSize: laptopUp ? 16 : 14,
-    },
-  };
 
   return (
     <div className={classes.itemContainer}>
@@ -95,7 +84,9 @@ const Item = ({
       </div>
       <div className={classes.right}>
         <div>
-          <h3 className={classes.title}>{title}</h3>
+          <h3 className={classes.title}>
+            <TextWithNumOfLines text={title} lines={2} />
+          </h3>
           <Rating
             value={stars}
             size="small"
@@ -106,21 +97,16 @@ const Item = ({
             className={classes.stars}
           />
         </div>
-
         <div>
           <div>
-            <strike className={classes.discount}>
-              ${price}
-            </strike>
-            <span className={classes.price}>${parseInt(price * (discount / 100))}</span>
+            <span className={classes.price}>
+              ${parseInt(price).toLocaleString()}
+            </span>
+            <span className={classes.discount}>-35%</span>
           </div>
 
           <div className={classes.actions}>
             <span>{action}</span>
-            <BiHeart
-              style={mediaStyles.wishListIcon}
-              className={classes.wishListIcon}
-            />
           </div>
         </div>
       </div>

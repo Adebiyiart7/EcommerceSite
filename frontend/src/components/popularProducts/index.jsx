@@ -11,7 +11,8 @@ import Button from "../common/Button";
 import { useEffect } from "react";
 import { getProducts, reset } from "../../features/products/productsSlice";
 import { addToWishlist } from "../../features/wishlist/wishlistSlice";
-import { addTocart } from "../../features/cart/cartSlice";
+import { addToCart } from "../../features/cart/cartSlice";
+import handleAddToCart from "../../utils/handleAddToCart";
 
 const useStyles = makeStyles({
   popularProducts: {
@@ -79,22 +80,6 @@ const PopularProducts = ({ mediaQueries }) => {
     }
   };
 
-  // add product to redux store
-  const handleAddToCart = (data) => {
-    // get cart from localstorage
-    const cart = JSON.parse(localStorage.getItem("cart"));
-    if (cart) {
-      // check if data already exist
-      const dataExists = cart.filter((item) => item.id === data.id);
-      // add data if it does not exist in the localstorage
-      if (dataExists.length === 0) {
-        dispatch(addTocart(data));
-      }
-    } else {
-      dispatch(addTocart(data));
-    }
-  };
-
   return (
     <div className={classes.popularProducts}>
       <PageTitle
@@ -117,13 +102,17 @@ const PopularProducts = ({ mediaQueries }) => {
                   action={
                     <ItemButton
                       onAddToCart={() =>
-                        handleAddToCart({
-                          id: item._id,
-                          name: item.name,
-                          price: item.price,
-                          image: carrots,
-                          quantity: 1,
-                        })
+                        handleAddToCart(
+                          {
+                            id: item._id,
+                            name: item.name,
+                            price: item.price,
+                            image: carrots,
+                            quantity: 1,
+                          },
+                          dispatch,
+                          addToCart
+                        )
                       }
                     />
                   }

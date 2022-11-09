@@ -9,7 +9,7 @@ const initialState = {
 };
 
 // ADD TO CART
-export const addTocart = createAsyncThunk("cart/add", (data, thunkAPI) => {
+export const addToCart = createAsyncThunk("cart/add", (data, thunkAPI) => {
   try {
     return data;
   } catch (error) {
@@ -52,14 +52,13 @@ const cartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(addTocart.fulfilled, (state, action) => {
+      .addCase(addToCart.fulfilled, (state, action) => {
         state.isSuccess = true;
         state.cart.push(action.payload);
       })
       .addCase(removeFromCart.fulfilled, (state, action) => {
         state.isSuccess = true;
         const newList = state.cart.filter((item) => item.id !== action.payload);
-        console.log(action.payload);
         state.cart = newList;
       })
       .addCase(updateItemQuantity.fulfilled, (state, action) => {

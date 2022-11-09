@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 // LOCAL IMPORT
 import pluralize from "../../utils/pluralize";
 import Button from "../common/Button";
+import TextWithNumOfLines from "../common/TextWithNumOfLines";
 import { cartStyles } from "./navbarStyles";
 
 export const useStyles = makeStyles(cartStyles());
@@ -72,7 +73,7 @@ const Cart = ({
             sx={{ top: "calc(40vh - 55px)" }}
             onClick={onToggleShowCart}
           >
-            <span style={{lineHeight: 0}}>
+            <span style={{ lineHeight: 0 }}>
               {itemCount() > 0 && (
                 <span className={classes.badge}>{itemCount()}</span>
               )}
@@ -95,8 +96,7 @@ const Cart = ({
                 {" "}
                 <Link to="/detail">
                   <div className={classes.name}>
-                    {item.name.slice(0, 40)}
-                    {item.name.length > 40 && "..."}
+                    <TextWithNumOfLines text={item.name} lines={2} />
                   </div>
                 </Link>
                 <div className={classes.price}>

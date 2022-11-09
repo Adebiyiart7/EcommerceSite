@@ -1,20 +1,25 @@
 // NODE_MODULES
-import { Container, Grid } from "@mui/material";
+import { useEffect } from "react";
 import { makeStyles } from "@mui/styles";
+import { Container, Grid } from "@mui/material";
 import {
   FaShippingFast,
   FaPhoneAlt,
   FaDollarSign,
   FaExchangeAlt,
 } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { MdOutlineAddShoppingCart } from "react-icons/md";
 
 // LOCAL IMPORTS
+import Card from "../common/Card";
+import Item from "../common/item2/Index";
 import PageTitle from "../common/PageTitle";
 import oranges from "../../assets/images/oranges.jpg";
-import Button from "../common/Button";
-import Item from "../common/item2/Index";
-import Card from "../common/Card";
 import different_fruits from "../../assets/images/different_fruits.jpg";
+import Button from "../common/Button";
+import { addToCart } from "../../features/cart/cartSlice";
+import handleAddToCart from "../../utils/handleAddToCart";
 
 const useStyles = makeStyles({
   cards: {
@@ -36,23 +41,20 @@ const useStyles = makeStyles({
   },
 });
 
-const ItemButton = ({ mediaQueries }) => {
-  const { laptopUp } = mediaQueries;
-
-  const customStyles = {
-    button: {
-      borderRadius: 0,
-      padding: "8px 16",
-      fontSize: laptopUp ? 14 : 12,
-    },
-  };
-
-  return <Button text="Add to Cart" customStyles={customStyles} />;
-};
-
 const Offer = ({ mediaQueries }) => {
-  const { tabletDown } = mediaQueries;
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const { tabletDown } = mediaQueries;
+
+  const { isSuccess: cartIsSuccess, cart } = useSelector((state) => state.cart);
+  const { products, isLoading } = useSelector((state) => state.products);
+
+  // store cart from redux store to localstorage
+  useEffect(() => {
+    if (cartIsSuccess) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cartIsSuccess, cart]);
 
   const mediaStyles = {
     cardContainer: {
@@ -83,72 +85,40 @@ const Offer = ({ mediaQueries }) => {
           mediaQueries={mediaQueries}
         />
         <Grid container spacing={{ xs: 2 }}>
-          <Grid item xs={12} sm={6} md={4}>
-            <Item
-              action={<ItemButton mediaQueries={mediaQueries} />}
-              image={oranges}
-              price={50}
-              discount={35}
-              stars={4}
-              title="Soure Fresh Lemons"
-              mediaQueries={mediaQueries}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Item
-              action={<ItemButton mediaQueries={mediaQueries} />}
-              image={oranges}
-              price={50}
-              discount={35}
-              stars={4}
-              title="Soure Fresh Lemons"
-              mediaQueries={mediaQueries}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Item
-              action={<ItemButton mediaQueries={mediaQueries} />}
-              image={oranges}
-              price={50}
-              discount={35}
-              stars={4}
-              title="Soure Fresh Lemons"
-              mediaQueries={mediaQueries}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Item
-              action={<ItemButton mediaQueries={mediaQueries} />}
-              image={oranges}
-              price={50}
-              discount={35}
-              stars={4}
-              title="Soure Fresh Lemons"
-              mediaQueries={mediaQueries}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Item
-              action={<ItemButton mediaQueries={mediaQueries} />}
-              image={oranges}
-              price={50}
-              discount={35}
-              stars={4}
-              title="Soure Fresh Lemons"
-              mediaQueries={mediaQueries}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Item
-              action={<ItemButton mediaQueries={mediaQueries} />}
-              image={oranges}
-              price={50}
-              discount={35}
-              stars={4}
-              title="Soure Fresh Lemons"
-              mediaQueries={mediaQueries}
-            />
-          </Grid>
+          {/* TODO handle loading with spinner */}
+          {isLoading && <p>Loading...</p>}
+          {products.slice(0, 6).map((item, index) => (
+            <Grid key={index} item xs={12} sm={6} md={4}>
+              <Item
+                action={
+                  <Button
+                    onClick={() =>
+                      handleAddToCart(
+                        {
+                          id: item._id,
+                          name: item.name,
+                          price: item.price,
+                          image: oranges,
+                          quantity: 1,
+                        },
+                        dispatch,
+                        addToCart
+                      )
+                    }
+                    startIcon={<MdOutlineAddShoppingCart />}
+                    text={"ADD"}
+                    small
+                    altButton
+                  />
+                }
+                image={oranges}
+                price={item.price}
+                stars={item.stars}
+                title={item.name}
+                mediaQueries={mediaQueries}
+              />
+            </Grid>
+          ))}
         </Grid>
       </Container>
       <div className={classes.cards}>

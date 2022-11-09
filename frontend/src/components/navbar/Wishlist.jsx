@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 // LOCAL IMPORT
 import pluralize from "../../utils/pluralize";
+import TextWithNumOfLines from "../common/TextWithNumOfLines";
 import { cartStyles } from "./navbarStyles";
 
 const useStyles = makeStyles(cartStyles());
@@ -52,7 +53,7 @@ const Wishlist = ({
             sx={{ top: "40vh" }}
             onClick={onToggleShowWishlist}
           >
-              <span style={{lineHeight: 0}}>
+            <span style={{ lineHeight: 0 }}>
               {items.length > 0 && (
                 <span className={classes.badge}>{items.length}</span>
               )}
@@ -74,8 +75,7 @@ const Wishlist = ({
               <div style={{ width: "100%" }}>
                 <Link to="/detail">
                   <div className={classes.name}>
-                    {item.name.slice(0, 50)}
-                    {item.name.length > 50 && "..."}
+                    <TextWithNumOfLines text={item.name} lines={2} />
                   </div>
                 </Link>
                 <div className={classes.itemFooter}>

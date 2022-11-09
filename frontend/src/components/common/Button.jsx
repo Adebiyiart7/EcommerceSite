@@ -4,7 +4,6 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles({
   button: {
     border: "1px solid var(--primaryBorder)",
-    padding: "6px 12px",
     backgroundColor: "transparent",
     borderRadius: 4,
     cursor: "pointer",
@@ -38,31 +37,31 @@ const Button = ({
   height,
   altButton,
   color,
+  small,
 }) => {
   const classes = useStyles();
-  const categoriesIcon = {
+  const buttonIcon = {
     position: "relative",
     top: 3,
-    fontSize: 20,
+    fontSize: small ? 18 : 20,
   };
 
   const inlineStyles = {
     button: {
       fontWeight: 700,
-      fontSize: 16,
-      padding: "10px 20px",
+      fontSize: small ? 14 : 16,
       fontFamily: "'Roboto', serif",
-      // marginRight: 20,
+      padding: small ? "4px 8px" : "10px 20px",
       width: width,
       height: height,
       color: color,
     },
     startIcon: {
-      ...categoriesIcon,
+      ...buttonIcon,
       marginRight: 8,
     },
     endIcon: {
-      ...categoriesIcon,
+      ...buttonIcon,
       marginLeft: 8,
     },
   };
