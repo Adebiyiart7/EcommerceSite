@@ -1,7 +1,13 @@
 // NODE_MODULES
 import { createContext } from "react";
+import { useSelector } from "react-redux";
 import { useTheme, useMediaQuery } from "@material-ui/core";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 // LOCAL IMPORTS
 import Home from "./pages/home/Home";
@@ -37,6 +43,12 @@ function App() {
     mediaQueries,
   };
 
+  const { user } = useSelector((state) => state.auth);
+
+  const PrivateElement = ({ element }) => {
+    return user ? element : <Navigate to={"/login"} />;
+  };
+
   return (
     <AppContext.Provider value={contextValue}>
       <Router>
@@ -48,7 +60,10 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route
+            path="/checkout"
+            element={<PrivateElement element={<Checkout />} />}
+          />
         </Routes>
       </Router>
     </AppContext.Provider>
