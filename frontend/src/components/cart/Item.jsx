@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 // LOCAL IMPORT
 import TextWithNumOfLines from "../common/TextWithNumOfLines";
 
-const Item = ({ item, index, classes, onRemove, onUpdateQuantity }) => {
+const Item = ({ item, classes, onRemove, onUpdateQuantity }) => {
   const action = {
     border: "1px solid var(--primaryBorder)",
     borderRadius: "4px",
@@ -15,7 +15,7 @@ const Item = ({ item, index, classes, onRemove, onUpdateQuantity }) => {
 
   return (
     // TODO change the div below to a link that will lead to the item detail
-    <div className={classes.item} key={index}>
+    <div className={classes.item}>
       <Link to="/detail">
         <img className={classes.image} src={item.image} alt="" />
       </Link>

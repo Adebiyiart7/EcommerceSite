@@ -29,6 +29,7 @@ export const cartStyles = () => {
     },
     item: {
       display: "flex",
+      fontFamily: "'Roboto', serif",
       alignItems: "center",
       padding: "10px 16px",
       borderBottom: "1px solid var(--secondaryBorder)",
