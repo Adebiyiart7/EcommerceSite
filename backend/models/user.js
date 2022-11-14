@@ -14,34 +14,40 @@ const userSchema = mongoose.Schema(
       max: 255,
       trim: true,
       type: String,
-      require: [true, "This field must not be empty"],
+      required: [true, "This field must not be empty"],
     },
     last_name: {
       min: 3,
       max: 255,
       trim: true,
       type: String,
-      require: [true, "This field must not be empty"],
+      required: [true, "This field must not be empty"],
     },
     email: {
       min: 3,
       max: 255,
       trim: true,
       type: String,
-      require: [true, "This field must not be empty"],
+      required: [true, "This field must not be empty"],
     },
     password: {
       min: 8,
       max: 255,
       type: String,
-      require: [true, "This field must not be empty"],
+      required: [true, "This field must not be empty"],
     },
     isSuperAdmin: {
       type: Boolean,
       default: false,
     },
-    isAdmin: { type: Boolean, default: false },
-    isActive: { type: Boolean, default: true }, // change default to false and activate user with an email
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
+    }, // change default to false and activate user with an email
   },
   { timestamps: true }
 );
