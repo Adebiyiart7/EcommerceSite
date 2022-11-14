@@ -42,7 +42,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // create new user
     user = await User.create({
-      specialID: Date.now().toString().slice(5),
+      specialID: Date.now().toString(),
       first_name: first_name,
       last_name: last_name,
       email: email,

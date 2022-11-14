@@ -38,9 +38,7 @@ const PopularProducts = ({ mediaQueries }) => {
   useEffect(() => {
     if (isError) console.log(message); // TODO SHOW ALERT
 
-    if (isSuccess) {
-      dispatch(getProducts(window.location.search));
-    }
+    dispatch(getProducts(window.location.search));
 
     return () => dispatch(reset());
   }, [isError, isSuccess, message, dispatch]);

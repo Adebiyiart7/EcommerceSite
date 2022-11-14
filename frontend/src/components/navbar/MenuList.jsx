@@ -63,11 +63,11 @@ const MenuList = ({ user, customStyles }) => {
     <>
       {user && (
         <>
-          <Link className={classes.link} to="/">
+          <div className={classes.link}>
             <li className={classes.list}>
-              <TextWithEllipsis text={user.fullname} />
+              <TextWithEllipsis text={`${user.first_name} ${user.last_name}`} />
             </li>
-          </Link>
+          </div>
           <Link className={classes.link} to="/profile">
             <li className={classes.list}>
               <MdPersonOutline className={classes.listIcon} /> Profile

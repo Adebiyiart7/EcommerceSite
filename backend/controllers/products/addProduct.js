@@ -10,6 +10,7 @@ const privilege = require("../../utils/privilege");
  * @description   Add new product
  * @route         POST api/products
  * @access        private
+ * @permission    admin, superAdmin
  */
 const addProduct = asyncHandler(async (req, res) => {
   const { user } = req;
@@ -64,7 +65,7 @@ const addProduct = asyncHandler(async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(400);
-    throw new Error("Error adding product");
+    throw new Error("Error adding product!");
   }
 });
 
