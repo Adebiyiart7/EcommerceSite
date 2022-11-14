@@ -3,7 +3,6 @@ const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
 
 // LOCAL IMPORTS
-const generateToken = require("../../utils/generateToken");
 const User = require("../../models/user");
 
 /**
@@ -30,12 +29,17 @@ const loginUser = asyncHandler(async (req, res) => {
   let user = await User.findOne({ email });
 
   if (user && (await bcrypt.compare(password, user.password))) {
+    const token = user.generateAuthToken();
     try {
       return res.status(200).json({
         id: user._id,
-        fullname: user.fullname,
+        first_name: user.first_name,
+        last_name: user.last_name,
         email: user.email,
-        token: generateToken(user._id),
+        isSuperAdmin: user.isSuperAdmin,
+        isAdmin: user.isAdmin,
+        isActive: user.isActive,
+        token: token,
       });
     } catch (error) {
       console.log(error);

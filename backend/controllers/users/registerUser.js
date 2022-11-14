@@ -4,9 +4,6 @@ const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
 
 // LOCAL IMPORTS
-const generateToken = require("../../utils/generateToken");
-
-// LOCAL IMPORTS
 const User = require("../../models/user");
 
 /**
@@ -17,7 +14,8 @@ const User = require("../../models/user");
 const registerUser = asyncHandler(async (req, res) => {
   // validate user input
   const schema = Joi.object({
-    fullname: Joi.string().min(3).max(255).required(),
+    first_name: Joi.string().min(3).max(255).required(),
+    last_name: Joi.string().min(3).max(255).required(),
     email: Joi.string().min(3).max(255).email().required(),
     password: Joi.string().min(8).max(255).required(),
   });
@@ -30,7 +28,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   // check if user already exist
-  const { fullname, email, password } = req.body;
+  const { first_name, last_name, email, password } = req.body;
   let user = await User.findOne({ email });
   if (user) {
     res.status(400);
@@ -44,14 +42,18 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // create new user
     user = await User.create({
-      fullname: fullname,
+      specialID: Date.now().toString().slice(5),
+      first_name: first_name,
+      last_name: last_name,
       email: email,
       password: hash,
     });
 
+    const token = user.generateAuthToken();
+
     return res.status(201).json({
-      ..._.pick(user, ["_id", "fullname", "email"]),
-      token: generateToken(user._id),
+      ..._.pick(user, ["_id", "first_name", "last_name", "email"]),
+      token: token,
     });
   } catch (error) {
     console.log(error);
