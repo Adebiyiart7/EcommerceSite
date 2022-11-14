@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 
 // LOCAL IMPORTS
 const Product = require("../../models/product");
+const privilege = require("../../utils/privilege");
 
 /**
  * @description   delete product
@@ -9,6 +10,10 @@ const Product = require("../../models/product");
  * @access        private
  */
 const deleteProduct = asyncHandler(async (req, res) => {
+  const { user } = req;
+
+  privilege.products(user, res); // authorize user
+
   try {
     // find product
     const product = await Product.findById(req.params.id);

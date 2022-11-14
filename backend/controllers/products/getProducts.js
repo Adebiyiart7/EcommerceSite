@@ -9,11 +9,15 @@ const Product = require("../../models/product");
  * @access        public
  */
 const getProducts = asyncHandler(async (req, res) => {
+  const query = {
+    ...req.query,
+  };
   try {
-    const products = await Product.find(req.query).select([
+    const products = await Product.find(query).select([
       "_id",
       "name",
       "price",
+      "available",
       "category",
       "stars",
     ]);
