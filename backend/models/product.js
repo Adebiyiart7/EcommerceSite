@@ -45,7 +45,7 @@ const productSchema = mongoose.Schema(
     },
     displayImage: {
       type: String,
-      required: true,
+      // required: true,
     },
     images: [
       {
@@ -53,10 +53,10 @@ const productSchema = mongoose.Schema(
         max: 255,
       },
     ],
-    active: {
+    available: {
       type: Boolean,
       require: true,
-      default: false,
+      default: true,
     },
   },
   { timestamps: true }
