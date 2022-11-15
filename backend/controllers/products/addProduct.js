@@ -4,7 +4,6 @@ const asyncHandler = require("express-async-handler");
 
 // LOCAL IMPORTS
 const Product = require("../../models/product");
-const privilege = require("../../utils/privilege");
 
 /**
  * @description   Add new product
@@ -14,8 +13,6 @@ const privilege = require("../../utils/privilege");
  */
 const addProduct = asyncHandler(async (req, res) => {
   const { user } = req;
-
-  privilege.products(user, res); // authorize user
 
   // validate input
   const schema = Joi.object({

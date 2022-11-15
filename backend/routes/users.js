@@ -6,10 +6,11 @@ const router = express.Router();
 const registerUser = require("../controllers/users/registerUser");
 const loginUser = require("../controllers/users/loginUser");
 const getMe = require("../controllers/users/getMe");
-const { protect } = require("../middleware/authMiddleware");
+const auth = require("../middleware/auth");
+const isActive = require("../middleware/isActive");
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-router.get("/me", protect, getMe);
+router.get("/me", [auth, isActive], getMe);
 
 module.exports = router;

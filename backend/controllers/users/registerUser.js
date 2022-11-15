@@ -6,6 +6,10 @@ const bcrypt = require("bcrypt");
 // LOCAL IMPORTS
 const User = require("../../models/user");
 
+const passwordRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+const passwordError =
+  "Password must be more than 8 chars, have at least one number, at least one special character(!@#$%^&*), at least one uppercase and one lowercase.";
+
 /**
  * @description   Create a user
  * @route         POST api/users/register
@@ -17,7 +21,12 @@ const registerUser = asyncHandler(async (req, res) => {
     first_name: Joi.string().min(3).max(255).required(),
     last_name: Joi.string().min(3).max(255).required(),
     email: Joi.string().min(3).max(255).email().required(),
-    password: Joi.string().min(8).max(255).required(),
+    password: Joi.string()
+      .min(8)
+      .max(255)
+      .required()
+      .regex(passwordRegEx)
+      .message(passwordError),
   });
   const { error } = schema.validate(req.body);
 

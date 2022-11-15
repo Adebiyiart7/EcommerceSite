@@ -1,7 +1,6 @@
 const asyncHandler = require("express-async-handler");
 
 // LOCAL IMPORTS
-const privileges = require("../../utils/privilege");
 const Order = require("../../models/order");
 
 /**
@@ -11,10 +10,6 @@ const Order = require("../../models/order");
  * @permission       admin, superAdmin
  */
 const getOrders = asyncHandler(async (req, res) => {
-  const { user } = req;
-
-  privileges.products(user, res);
-
   try {
     const orders = await Order.find().select([
       "_id",
@@ -23,7 +18,7 @@ const getOrders = asyncHandler(async (req, res) => {
       "last_name",
       "amount",
       "status",
-      "createAt",
+      "createdAt",
     ]);
     res.status(200).json(orders);
   } catch (error) {

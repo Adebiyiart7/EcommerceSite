@@ -10,7 +10,7 @@ const connectDB = require("./config/db");
 const userRoutes = require("./routes/users");
 const productRoutes = require("./routes/products");
 const orderRoutes = require("./routes/orders");
-const errorMiddleware = require("./middleware/errorMiddleware");
+const errorMiddleware = require("./middleware/error");
 
 // create an express app
 const app = express();

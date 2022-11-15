@@ -1,4 +1,4 @@
-const errorMiddleware = (err, req, res, next) => {
+const error = (err, req, res, next) => {
   const statusCode = res.statusCode ? res.statusCode : 500;
   res.status(statusCode);
 
@@ -8,4 +8,4 @@ const errorMiddleware = (err, req, res, next) => {
   });
 };
 
-module.exports = errorMiddleware;
+module.exports = error;
