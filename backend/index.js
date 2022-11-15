@@ -10,6 +10,7 @@ const connectDB = require("./config/db");
 const userRoutes = require("./routes/users");
 const productRoutes = require("./routes/products");
 const orderRoutes = require("./routes/orders");
+const salesRoutes = require("./routes/sales");
 const errorMiddleware = require("./middleware/error");
 
 // create an express app
@@ -26,6 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/sale", salesRoutes);
 app.use(errorMiddleware);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
